@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Base Rapat Harian — UP2D Jawa Timur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#071c33;
+    --navy-800:#0c2a4d;
+    --blue-700:#0e4a86;
+    --blue-500:#1f6fc4;
+    --sky:#dbe8fb;
+    --bg:#eef2f8;
+    --surface:#ffffff;
+    --ink:#16263b;
+    --muted:#64748b;
+    --line:#dde5f0;
+    --line-soft:#eef2f8;
+
+    --c-pemeliharaan:#0f9b8e;
+    --c-fasop:#d98c1f;
+    --c-opsis:#7a5af5;
+    --c-perencanaan:#1f6fc4;
+    --c-ku:#3fa34d;
+    --c-pengadaan:#d9527a;
+
+    --radius:14px;
+    --shadow:0 8px 24px -12px rgba(7,28,51,0.18);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 500px at 100% -10%, var(--sky) 0%, transparent 60%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .hidden{display:none !important;}
+
+  /* ============ LOGIN ============ */
+  #loginView{
+    min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    padding:20px;
+    background:
+      radial-gradient(900px 500px at 15% 20%, rgba(31,111,196,0.25) 0%, transparent 55%),
+      radial-gradient(700px 500px at 90% 90%, rgba(15,155,142,0.18) 0%, transparent 55%),
+      var(--navy-900);
+  }
+  .login-card{
+    width:100%;max-width:400px;
+    background:#fff;border-radius:18px;
+    box-shadow:0 30px 70px -20px rgba(0,0,0,0.5);
+    overflow:hidden;
+  }
+  .login-brand{
+    background:linear-gradient(135deg, var(--navy-800), var(--blue-700));
+    color:#fff;padding:28px 28px 24px;
+  }
+  .login-brand .org{
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    opacity:.75;font-weight:600;margin-bottom:8px;
+  }
+  .login-brand h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:24px;margin:0;line-height:1.2;letter-spacing:-.01em;
+  }
+  .login-brand p{margin:8px 0 0;font-size:12.5px;opacity:.8;}
+  .login-body{padding:26px 28px 30px;}
+  .login-body label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:0 0 6px;}
+  .login-body input{
+    width:100%;border:1px solid var(--line);border-radius:10px;
+    padding:11px 13px;font-size:14px;font-family:inherit;margin-bottom:16px;
+    background:#fbfcfe;
+  }
+  .login-body input:focus{outline:2px solid var(--blue-500);outline-offset:1px;border-color:var(--blue-500);}
+  .login-err{
+    background:#fdf0f2;color:#b02a3d;border:1px solid #f0d0d5;
+    font-size:12.5px;padding:9px 12px;border-radius:8px;margin-bottom:14px;display:none;
+  }
+  .login-err.show{display:block;}
+  .btn-login{
+    width:100%;border:none;border-radius:10px;padding:12px;
+    background:var(--blue-500);color:#fff;font-weight:700;font-size:14px;
+    cursor:pointer;font-family:'Space Grotesk',sans-serif;letter-spacing:.02em;
+  }
+  .btn-login:hover{background:var(--blue-700);}
+  .login-hint{margin-top:14px;font-size:11.5px;color:var(--muted);text-align:center;}
+
+  /* ============ COVER / LANDING ============ */
+  #coverView{
+    min-height:100vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;
+    padding:40px 20px;
+    background:
+      radial-gradient(900px 500px at 20% 15%, rgba(31,111,196,0.22) 0%, transparent 55%),
+      radial-gradient(700px 500px at 85% 85%, rgba(15,155,142,0.16) 0%, transparent 55%),
+      var(--navy-900);
+    color:#fff;
+  }
+  .cover-org{
+    font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    opacity:.7;font-weight:600;margin-bottom:18px;
+  }
+  #coverView h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(34px,6vw,58px);
+    margin:0;line-height:1.05;letter-spacing:-.02em;
+    max-width:760px;
+  }
+  #coverView h1 .accent{color:#7db8f0;}
+  .cover-sub{
+    margin:18px auto 0;max-width:560px;
+    font-size:15px;line-height:1.65;opacity:.82;
+  }
+  .cover-stats{
+    display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:30px;
+  }
+  .cover-stat{
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:12px;padding:14px 22px;min-width:130px;
+    backdrop-filter:blur(4px);
+  }
+  .cover-stat .v{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;}
+  .cover-stat .k{font-size:11.5px;opacity:.7;margin-top:3px;}
+  .btn-enter{
+    margin-top:36px;border:none;border-radius:12px;
+    padding:15px 34px;font-size:15px;font-weight:700;
+    background:#fff;color:var(--navy-900);cursor:pointer;
+    font-family:'Space Grotesk',sans-serif;letter-spacing:.02em;
+    box-shadow:0 16px 40px -12px rgba(0,0,0,0.5);
+    transition:.15s;
+  }
+  .btn-enter:hover{transform:translateY(-2px);}
+  .cover-foot{margin-top:44px;font-size:11.5px;opacity:.55;}
+
+  /* ============ APP ============ */
+  .wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px;}
+  .topbar{
+    display:flex;justify-content:space-between;align-items:center;
+    gap:14px;flex-wrap:wrap;
+    background:var(--navy-900);color:#fff;
+    padding:14px 20px;border-radius:14px;margin-bottom:20px;
+  }
+  .topbar .tb-title{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .tb-badge{
+    background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18);
+    font-size:11px;padding:3px 10px;border-radius:999px;font-weight:600;
+  }
+  .tb-right{display:flex;align-items:center;gap:12px;font-size:12.5px;}
+  .tb-user{opacity:.85;}
+  .btn-logout{
+    border:1px solid rgba(255,255,255,0.25);background:transparent;color:#fff;
+    border-radius:8px;padding:6px 13px;font-size:12px;font-weight:600;cursor:pointer;
+    font-family:inherit;
+  }
+  .btn-logout:hover{background:rgba(255,255,255,0.1);}
+
+  header.page-head{
+    display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;
+    gap:16px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--blue-500);font-weight:600;margin:0 0 6px;
+  }
+  h2.page-title{
+    font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,3vw,28px);
+    font-weight:700;margin:0;color:var(--navy-900);letter-spacing:-.01em;
+  }
+  .sub{color:var(--muted);font-size:13.5px;margin-top:6px;}
+  .period-badge{
+    font-family:'Space Grotesk',sans-serif;background:var(--navy-900);color:#fff;
+    padding:10px 16px;border-radius:10px;font-size:13px;font-weight:600;white-space:nowrap;
+  }
+
+  .strip{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 22px 14px;margin-bottom:20px;box-shadow:var(--shadow);overflow-x:auto;
+  }
+  .strip-months{display:grid;grid-template-columns:repeat(6,1fr);min-width:640px;position:relative;}
+  .strip-months::before{content:'';position:absolute;top:9px;left:0;right:0;height:2px;background:var(--line);}
+  .strip-month{text-align:center;position:relative;padding-top:22px;cursor:pointer;}
+  .strip-month .dot{
+    position:absolute;top:2px;left:50%;transform:translateX(-50%);
+    width:16px;height:16px;border-radius:50%;
+    background:var(--surface);border:2px solid var(--blue-500);transition:.15s;
+  }
+  .strip-month.active .dot{background:var(--blue-500);}
+  .strip-month .lbl{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--muted);}
+  .strip-month.active .lbl{color:var(--navy-900);}
+  .strip-month .cnt{font-size:11px;color:var(--muted);margin-top:2px;}
+
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
+  .chip{
+    display:flex;align-items:center;gap:7px;background:var(--surface);
+    border:1px solid var(--line);padding:7px 12px 7px 10px;border-radius:999px;
+    font-size:12.5px;font-weight:600;color:var(--ink);cursor:pointer;user-select:none;transition:.15s;
+  }
+  .chip .sw{width:10px;height:10px;border-radius:50%;flex:none;}
+  .chip.off{opacity:.4;}
+  .chip:hover{border-color:var(--blue-500);}
+
+  .cal-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:20px;
+  }
+  .cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+  .cal-head h3{font-family:'Space Grotesk',sans-serif;font-size:18px;margin:0;color:var(--navy-900);}
+  .cal-nav{display:flex;gap:6px;}
+  .cal-nav button{
+    border:1px solid var(--line);background:#fff;color:var(--navy-900);
+    width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:14px;
+  }
+  .cal-nav button:hover{border-color:var(--blue-500);color:var(--blue-500);}
+  .dow{
+    display:grid;grid-template-columns:repeat(7,1fr);font-size:11px;font-weight:700;
+    color:var(--muted);letter-spacing:.06em;text-transform:uppercase;padding:0 2px 8px;
+  }
+  .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+  .day{
+    min-height:92px;border:1px solid var(--line-soft);border-radius:10px;
+    padding:6px 6px 8px;background:#fbfcfe;cursor:pointer;transition:.15s;
+    display:flex;flex-direction:column;
+  }
+  .day:hover{border-color:var(--blue-500);background:#f3f8ff;}
+  .day.empty{background:transparent;border-color:transparent;cursor:default;}
+  .day .num{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--ink);}
+  .day.sun .num,.day.sat .num{color:var(--muted);}
+  .dots{display:flex;flex-wrap:wrap;gap:3px;margin-top:auto;}
+  .dots span{width:7px;height:7px;border-radius:50%;flex:none;}
+  .prog-mini{
+    font-size:9.5px;font-weight:700;margin-top:3px;
+    color:var(--blue-700);
+  }
+
+  /* ============ MODAL ============ */
+  .overlay{
+    position:fixed;inset:0;background:rgba(7,28,51,0.45);
+    display:none;align-items:center;justify-content:center;padding:20px;z-index:50;
+  }
+  .overlay.show{display:flex;}
+  .modal{
+    background:#fff;border-radius:16px;max-width:760px;width:100%;
+    max-height:88vh;overflow-y:auto;box-shadow:0 24px 60px -12px rgba(7,28,51,0.4);
+  }
+  .modal-head{
+    padding:20px 22px 14px;border-bottom:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:flex-start;
+    position:sticky;top:0;background:#fff;z-index:2;
+  }
+  .modal-head h3{font-family:'Space Grotesk',sans-serif;margin:0;font-size:17px;color:var(--navy-900);}
+  .modal-head p{margin:3px 0 0;font-size:12.5px;color:var(--muted);}
+  .close-btn{
+    border:none;background:var(--line-soft);width:30px;height:30px;border-radius:8px;
+    cursor:pointer;font-size:16px;color:var(--muted);
+  }
+  .close-btn:hover{background:var(--line);color:var(--ink);}
+  .modal-body{padding:16px 22px 22px;}
+  .meeting-card{
+    border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:14px;
+    border-left:4px solid var(--blue-500);
+  }
+  .meeting-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;}
+  .meeting-top .bagian-name{font-weight:700;font-size:13.5px;}
+  .field-row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;}
+  .field{flex:1;min-width:120px;}
+  .field label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600;}
+  .field input,.field textarea,.field select{
+    width:100%;border:1px solid var(--line);border-radius:8px;padding:7px 9px;
+    font-family:inherit;font-size:13px;color:var(--ink);background:#fbfcfe;
+  }
+  .field textarea{resize:vertical;min-height:56px;}
+  .field input:focus,.field textarea:focus,.field select:focus{
+    outline:2px solid var(--blue-500);outline-offset:1px;border-color:var(--blue-500);
+  }
+  .meeting-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px;}
+  .btn{border:none;border-radius:8px;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;}
+  .btn-save{background:var(--blue-500);color:#fff;}
+  .btn-save:hover{background:var(--blue-700);}
+  .btn-del{background:transparent;color:#c23;border:1px solid #f0d0d5;}
+  .btn-del:hover{background:#fdf0f2;}
+  .btn-add{background:var(--navy-900);color:#fff;width:100%;padding:10px;border-radius:10px;margin-top:4px;}
+  .btn-add:hover{background:var(--navy-800);}
+  .btn-ghost{background:#fff;border:1px dashed var(--blue-500);color:var(--blue-500);width:100%;padding:8px;border-radius:8px;}
+  .btn-ghost:hover{background:#f3f8ff;}
+  .status-tag{font-size:10.5px;padding:2px 8px;border-radius:999px;font-weight:600;}
+  .status-tentative{background:#fef3e2;color:#9a6b0c;}
+  .status-done{background:#e6f4ea;color:#1e7a37;}
+
+  /* ---- Progress table ---- */
+  .prog-section{
+    margin-top:14px;border-top:1px dashed var(--line);padding-top:12px;
+  }
+  .prog-section-head{
+    display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+  }
+  .prog-section-head .t{
+    font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy-800);
+  }
+  table.prog-table{
+    width:100%;border-collapse:collapse;font-size:12.5px;
+  }
+  table.prog-table th{
+    text-align:left;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--muted);font-weight:700;padding:6px 8px;border-bottom:1px solid var(--line);
+    background:var(--line-soft);
+  }
+  table.prog-table td{
+    padding:5px 6px;border-bottom:1px solid var(--line-soft);vertical-align:top;
+  }
+  table.prog-table input, table.prog-table select{
+    width:100%;border:1px solid transparent;border-radius:6px;padding:5px 7px;
+    font-family:inherit;font-size:12.5px;background:transparent;color:var(--ink);
+  }
+  table.prog-table input:hover, table.prog-table select:hover{border-color:var(--line);}
+  table.prog-table input:focus, table.prog-table select:focus{
+    outline:none;border-color:var(--blue-500);background:#fff;
+  }
+  .prog-status{font-weight:600;}
+  .prog-status.s-open{color:#9a6b0c;}
+  .prog-status.s-progress{color:var(--blue-700);}
+  .prog-status.s-done{color:#1e7a37;}
+  .row-del{
+    border:none;background:transparent;color:#c9aeb4;cursor:pointer;font-size:14px;padding:2px 6px;
+  }
+  .row-del:hover{color:#c23;}
+  .prog-empty{font-size:12px;color:var(--muted);padding:8px 4px;}
+
+  .empty-day{text-align:center;color:var(--muted);font-size:13px;padding:20px 0;}
+  .add-select-row{display:flex;gap:8px;margin-top:6px;}
+  .add-select-row select{flex:1;border:1px solid var(--line);border-radius:8px;padding:8px;font-family:inherit;font-size:13px;}
+
+  .footnote{
+    margin-top:16px;font-size:12px;color:var(--muted);text-align:center;
+    display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;
+  }
+  .save-indicator{
+    display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--muted);
+    opacity:0;transition:opacity .3s;
+  }
+  .save-indicator.show{opacity:1;}
+  .save-indicator .pulse{width:6px;height:6px;border-radius:50%;background:#3fa34d;}
+
+  @media (max-width:640px){
+    .day{min-height:66px;}
+    .strip-months{min-width:560px;}
+    table.prog-table th:nth-child(3), table.prog-table td:nth-child(3){display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div id="loginView">
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="org">PT PLN (Persero) · UP2D Jawa Timur</div>
+      <h1>Web Base<br>Rapat Harian</h1>
+      <p>Manajemen jadwal, notulen, dan progress rapat perbagian</p>
+    </div>
+    <div class="login-body">
+      <div class="login-err" id="loginErr">Username atau password salah.</div>
+      <label for="username">Username</label>
+      <input type="text" id="username" autocomplete="username" placeholder="Masukkan username">
+      <label for="password">Password</label>
+      <input type="password" id="password" autocomplete="current-password" placeholder="Masukkan password">
+      <button class="btn-login" id="loginBtn">Masuk</button>
+      <div class="login-hint">Akses internal — hubungi Bagian Perencanaan untuk kredensial.</div>
+      <div class="login-hint" id="dbStatus" style="margin-top:6px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ COVER ============ -->
+<div id="coverView" class="hidden">
+  <div class="cover-org">PT PLN (Persero) · UP2D Jawa Timur</div>
+  <h1>Web Base<br><span class="accent">Rapat Harian</span></h1>
+  <p class="cover-sub">
+    Platform terpadu penjadwalan rapat perbagian, pencatatan notulen, dan monitoring
+    progress tindak lanjut — Semester II Tahun 2026.
+  </p>
+  <div class="cover-stats" id="coverStats">
+    <div class="cover-stat"><div class="v">6</div><div class="k">Bagian</div></div>
+    <div class="cover-stat"><div class="v" id="statMeetings">—</div><div class="k">Rapat Terjadwal</div></div>
+    <div class="cover-stat"><div class="v" id="statDone">—</div><div class="k">Terlaksana</div></div>
+    <div class="cover-stat"><div class="v" id="statProgress">—</div><div class="k">Item Progress</div></div>
+  </div>
+  <button class="btn-enter" id="enterBtn">Buka Kalender Rapat →</button>
+  <div class="cover-foot">Periode 6 Juli — 31 Desember 2026 · Bagian Perencanaan</div>
+</div>
+
+<!-- ============ APP ============ -->
+<div id="appView" class="hidden">
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="tb-title">Web Base Rapat Harian <span class="tb-badge">Semester II · 2026</span></div>
+    <div class="tb-right">
+      <span class="tb-user">👤 admin</span>
+      <button class="btn-logout" id="homeBtn">Halaman Muka</button>
+      <button class="btn-logout" id="logoutBtn">Keluar</button>
+    </div>
+  </div>
+
+  <header class="page-head">
+    <div>
+      <p class="eyebrow">UP2D Jawa Timur · Bagian Perencanaan</p>
+      <h2 class="page-title">Kalender Rapat Perbagian</h2>
+      <p class="sub">Jadwal tentatif — klik tanggal untuk mengisi notulen &amp; progress tindak lanjut</p>
+    </div>
+    <div class="period-badge">6 Jul — 31 Des 2026</div>
+  </header>
+
+  <div class="strip"><div class="strip-months" id="stripMonths"></div></div>
+
+  <div class="legend" id="legend"></div>
+
+  <div class="cal-card">
+    <div class="cal-head">
+      <h3 id="calTitle">Juli 2026</h3>
+      <div class="cal-nav">
+        <button id="prevBtn" aria-label="Bulan sebelumnya">‹</button>
+        <button id="nextBtn" aria-label="Bulan berikutnya">›</button>
+      </div>
+    </div>
+    <div class="dow">
+      <div>Sen</div><div>Sel</div><div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div><div>Min</div>
+    </div>
+    <div class="grid" id="calGrid"></div>
+  </div>
+
+  <div class="footnote">
+    <span>Titik warna = rapat bagian · Angka ▣ = jumlah item progress pada hari itu.</span>
+    <span class="save-indicator" id="saveIndicator"><span class="pulse"></span>Tersimpan</span>
+  </div>
+</div>
+</div>
+
+<!-- ============ MODAL ============ -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h3 id="modalDate">Tanggal</h3>
+        <p id="modalSub"></p>
+      </div>
+      <button class="close-btn" id="closeModal">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ================= Konfigurasi ================= */
+  const CREDENTIALS = { username:'admin', password:'admin' }; // demo — bukan keamanan sesungguhnya
+  const STORAGE_KEY = 'wbrh-meetings-sem2-2026';
+
+  const BAGIAN = [
+    {id:'pemeliharaan', name:'Bagian Pemeliharaan',      color:'var(--c-pemeliharaan)', hex:'#0f9b8e'},
+    {id:'fasop',        name:'Bagian Fasop',              color:'var(--c-fasop)',        hex:'#d98c1f'},
+    {id:'opsis',        name:'Bagian Opsis',              color:'var(--c-opsis)',        hex:'#7a5af5'},
+    {id:'perencanaan',  name:'Bagian Perencanaan',        color:'var(--c-perencanaan)',  hex:'#1f6fc4'},
+    {id:'ku',           name:'Bagian KU',                 color:'var(--c-ku)',           hex:'#3fa34d'},
+    {id:'pengadaan',    name:'Bagian Pengadaan dan K3L',  color:'var(--c-pengadaan)',    hex:'#d9527a'},
+  ];
+  const bagianMap = Object.fromEntries(BAGIAN.map(b=>[b.id,b]));
+  const MONTHS = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  const MONTH_LIST = [6,7,8,9,10,11];
+  const YEAR = 2026;
+
+  let activeMonthIdx = 0;
+  let activeFilters = new Set(BAGIAN.map(b=>b.id));
+  let meetings = [];
+
+  /* ================= Util ================= */
+  function pad(n){return n<10?'0'+n:''+n;}
+  function dateStr(y,m,d){return `${y}-${pad(m+1)}-${pad(d)}`;}
+  function dowMonFirst(jsDay){return jsDay===0?6:jsDay-1;}
+  function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function escapeAttr(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;');}
+  function fmtDateHuman(ds){
+    const d = new Date(ds+'T00:00:00');
+    const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+    return `${days[d.getDay()]}, ${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+  }
+
+  /* ================= Data ================= */
+  function seedMeetings(){
+    const dayBagianMap = {1:'pemeliharaan',2:'fasop',3:'opsis',4:'perencanaan',5:'ku',6:'pengadaan'};
+    const start = new Date(2026,6,6);
+    const end = new Date(2026,11,31);
+    const arr = [];
+    let cur = new Date(start);
+    while(cur <= end){
+      const bId = dayBagianMap[cur.getDay()];
+      if(bId){
+        const ds = dateStr(cur.getFullYear(), cur.getMonth(), cur.getDate());
+        arr.push({
+          id: ds+'-'+bId, date: ds, bagianId: bId,
+          time:'09:00', agenda:'Rapat Rutin '+bagianMap[bId].name,
+          notulen:'', status:'tentative', progress:[]
+        });
+      }
+      cur.setDate(cur.getDate()+1);
+    }
+    return arr;
+  }
+
+  /* ---- Lapisan penyimpanan: Google Apps Script (database: Google Sheets di Google Drive) ----
+     Ganti API_URL di bawah dengan URL Web App hasil deploy Apps Script (lihat PANDUAN_DEPLOY).
+     Jika API_URL kosong, aplikasi tetap berjalan dengan penyimpanan lokal (localStorage)
+     di komputer masing-masing — namun data TIDAK tersinkron antar pengguna. */
+  const API_URL = "https://script.google.com/macros/s/AKfycbxbsMtVV5nZJBj2TMUHuvsERFU-auuc3bTxZUBRqUdy5e4DX23rPvFDtoita6cP6DGSMg/exec";
+
+  function setSyncBadge(txt, ok){
+    const ind = document.getElementById('saveIndicator');
+    ind.innerHTML = `<span class="pulse" style="background:${ok?'#3fa34d':'#d98c1f'}"></span>${txt}`;
+    ind.classList.add('show');
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(()=>ind.classList.remove('show'), 2200);
+  }
+
+  async function loadMeetings(){
+    // 1) Coba dari server (Google Sheets via Apps Script)
+    if(API_URL){
+      try{
+        const res = await fetch(API_URL + '?action=load', {method:'GET'});
+        const data = await res.json();
+        if(data && Array.isArray(data.meetings) && data.meetings.length){
+          meetings = data.meetings;
+          meetings.forEach(m=>{ if(!Array.isArray(m.progress)) m.progress = []; });
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(meetings)); // cache lokal
+          return;
+        }
+        // server kosong -> seed lalu simpan ke server
+        meetings = seedMeetings();
+        await saveMeetings();
+        return;
+      }catch(e){
+        console.warn('Server tidak terjangkau, memakai cache lokal.', e);
+        setSyncBadge('Offline — memakai data lokal', false);
+      }
+    }
+    // 2) Fallback: localStorage
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(raw){
+        meetings = JSON.parse(raw);
+        meetings.forEach(m=>{ if(!Array.isArray(m.progress)) m.progress = []; });
+        return;
+      }
+    }catch(e){/* seed */}
+    meetings = seedMeetings();
+    await saveMeetings();
+  }
+
+  let saveTimer = null;
+  async function saveMeetings(){
+    // Selalu simpan cache lokal dulu (agar tidak ada data hilang)
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(meetings)); }catch(e){}
+    if(!API_URL){
+      setSyncBadge('Tersimpan (lokal)', true);
+      return;
+    }
+    try{
+      // Content-Type text/plain menghindari preflight CORS pada Apps Script
+      const res = await fetch(API_URL, {
+        method:'POST',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body: JSON.stringify({action:'save', meetings})
+      });
+      const data = await res.json();
+      if(data && data.ok){ setSyncBadge('Tersimpan ke server', true); }
+      else{ setSyncBadge('Gagal simpan ke server', false); }
+    }catch(e){
+      console.error('Gagal menyimpan ke server', e);
+      setSyncBadge('Offline — tersimpan lokal', false);
+    }
+  }
+
+  function meetingsForDate(ds){return meetings.filter(m=>m.date===ds && activeFilters.has(m.bagianId));}
+  function allMeetingsForDate(ds){return meetings.filter(m=>m.date===ds);}
+
+  /* ================= Views: login / cover / app ================= */
+  const views = {
+    login: document.getElementById('loginView'),
+    cover: document.getElementById('coverView'),
+    app:   document.getElementById('appView'),
+  };
+  function showView(name){
+    Object.entries(views).forEach(([k,el])=>el.classList.toggle('hidden', k!==name));
+  }
+
+  document.getElementById('loginBtn').onclick = doLogin;
+  document.getElementById('password').addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
+  function doLogin(){
+    const u = document.getElementById('username').value.trim();
+    const p = document.getElementById('password').value;
+    if(u===CREDENTIALS.username && p===CREDENTIALS.password){
+      document.getElementById('loginErr').classList.remove('show');
+      sessionActive = true;
+      updateCoverStats();
+      showView('cover');
+    }else{
+      document.getElementById('loginErr').classList.add('show');
+    }
+  }
+  let sessionActive = false;
+
+  document.getElementById('enterBtn').onclick = ()=>{ showView('app'); renderCalendar(); };
+  document.getElementById('homeBtn').onclick  = ()=>{ updateCoverStats(); showView('cover'); };
+  document.getElementById('logoutBtn').onclick = ()=>{
+    sessionActive = false;
+    document.getElementById('username').value = '';
+    document.getElementById('password').value = '';
+    showView('login');
+  };
+
+  function updateCoverStats(){
+    const total = meetings.length;
+    const done = meetings.filter(m=>m.status==='done').length;
+    const prog = meetings.reduce((a,m)=>a+(m.progress?m.progress.length:0),0);
+    document.getElementById('statMeetings').textContent = total;
+    document.getElementById('statDone').textContent = done;
+    document.getElementById('statProgress').textContent = prog;
+  }
+
+  /* ================= Render: legend / strip / calendar ================= */
+  function renderLegend(){
+    const el = document.getElementById('legend');
+    el.innerHTML = '';
+    BAGIAN.forEach(b=>{
+      const chip = document.createElement('div');
+      chip.className = 'chip'+(activeFilters.has(b.id)?'':' off');
+      chip.innerHTML = `<span class="sw" style="background:${b.color}"></span>${b.name}`;
+      chip.onclick = ()=>{
+        if(activeFilters.has(b.id)) activeFilters.delete(b.id); else activeFilters.add(b.id);
+        renderLegend(); renderCalendar();
+      };
+      el.appendChild(chip);
+    });
+  }
+
+  function renderStrip(){
+    const el = document.getElementById('stripMonths');
+    el.innerHTML = '';
+    MONTH_LIST.forEach((m,idx)=>{
+      const count = meetings.filter(mt=>{
+        const d = new Date(mt.date+'T00:00:00');
+        return d.getMonth()===m && activeFilters.has(mt.bagianId);
+      }).length;
+      const div = document.createElement('div');
+      div.className = 'strip-month'+(idx===activeMonthIdx?' active':'');
+      div.innerHTML = `<div class="dot"></div><div class="lbl">${MONTHS[m].slice(0,3)}</div><div class="cnt">${count} rapat</div>`;
+      div.onclick = ()=>{ activeMonthIdx = idx; renderCalendar(); };
+      el.appendChild(div);
+    });
+  }
+
+  function renderCalendar(){
+    const m = MONTH_LIST[activeMonthIdx];
+    document.getElementById('calTitle').textContent = MONTHS[m]+' '+YEAR;
+    const grid = document.getElementById('calGrid');
+    grid.innerHTML = '';
+    const startOffset = dowMonFirst(new Date(YEAR,m,1).getDay());
+    const daysInMonth = new Date(YEAR,m+1,0).getDate();
+
+    for(let i=0;i<startOffset;i++){
+      const f = document.createElement('div'); f.className='day empty'; grid.appendChild(f);
+    }
+    for(let d=1; d<=daysInMonth; d++){
+      const ds = dateStr(YEAR,m,d);
+      const jsDay = new Date(YEAR,m,d).getDay();
+      const cell = document.createElement('div');
+      cell.className = 'day'+(jsDay===0?' sun':'')+(jsDay===6?' sat':'');
+      const dayMeetings = meetingsForDate(ds);
+      let dotsHtml = '';
+      dayMeetings.slice(0,6).forEach(mt=>{
+        dotsHtml += `<span style="background:${bagianMap[mt.bagianId].color}" title="${bagianMap[mt.bagianId].name}"></span>`;
+      });
+      const progCount = dayMeetings.reduce((a,mt)=>a+(mt.progress?mt.progress.length:0),0);
+      cell.innerHTML = `<div class="num">${d}</div><div class="dots">${dotsHtml}</div>`+
+        (progCount?`<div class="prog-mini">▣ ${progCount} progress</div>`:'');
+      cell.onclick = ()=>openModal(ds);
+      grid.appendChild(cell);
+    }
+    renderStrip();
+  }
+
+  /* ================= Modal ================= */
+  function openModal(ds){
+    document.getElementById('modalDate').textContent = fmtDateHuman(ds);
+    refreshModalSub(ds);
+    renderModalBody(ds);
+    document.getElementById('overlay').classList.add('show');
+  }
+  function refreshModalSub(ds){
+    const n = allMeetingsForDate(ds).length;
+    document.getElementById('modalSub').textContent = n ? `${n} rapat terjadwal` : 'Belum ada rapat pada tanggal ini';
+  }
+
+  const STATUS_PROG = [
+    {v:'open',     l:'Open'},
+    {v:'progress', l:'On Progress'},
+    {v:'done',     l:'Selesai'},
+  ];
+
+  function renderModalBody(ds){
+    const body = document.getElementById('modalBody');
+    const dayMeetings = allMeetingsForDate(ds);
+    let html = '';
+
+    if(dayMeetings.length===0){
+      html += `<div class="empty-day">Belum ada rapat. Tambahkan bagian di bawah.</div>`;
+    }else{
+      dayMeetings.forEach(mt=>{
+        const b = bagianMap[mt.bagianId];
+        const progRows = (mt.progress||[]).map((p,i)=>`
+          <tr data-idx="${i}">
+            <td><input type="text" value="${escapeAttr(p.item||'')}" data-pfield="item" placeholder="Uraian tindak lanjut"></td>
+            <td style="width:120px"><input type="text" value="${escapeAttr(p.pic||'')}" data-pfield="pic" placeholder="PIC"></td>
+            <td style="width:120px"><input type="text" value="${escapeAttr(p.target||'')}" data-pfield="target" placeholder="Target"></td>
+            <td style="width:130px">
+              <select data-pfield="status" class="prog-status s-${p.status||'open'}">
+                ${STATUS_PROG.map(s=>`<option value="${s.v}" ${(p.status||'open')===s.v?'selected':''}>${s.l}</option>`).join('')}
+              </select>
+            </td>
+            <td style="width:30px"><button class="row-del" data-action="del-row" title="Hapus baris">✕</button></td>
+          </tr>`).join('');
+
+        html += `
+        <div class="meeting-card" data-id="${mt.id}" style="border-left-color:${b.hex}">
+          <div class="meeting-top">
+            <span class="bagian-name" style="color:${b.hex}">${b.name}</span>
+            <span class="status-tag ${mt.status==='done'?'status-done':'status-tentative'}">${mt.status==='done'?'Sudah dilaksanakan':'Tentatif'}</span>
+          </div>
+          <div class="field-row">
+            <div class="field" style="max-width:110px;">
+              <label>Jam</label>
+              <input type="time" value="${mt.time||'09:00'}" data-field="time">
+            </div>
+            <div class="field" style="max-width:190px;">
+              <label>Status Rapat</label>
+              <select data-field="status">
+                <option value="tentative" ${mt.status==='tentative'?'selected':''}>Tentatif</option>
+                <option value="done" ${mt.status==='done'?'selected':''}>Sudah dilaksanakan</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Agenda</label>
+              <input type="text" value="${escapeAttr(mt.agenda||'')}" data-field="agenda"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Notulen</label>
+              <textarea data-field="notulen" placeholder="Isi hasil rapat, keputusan, dan arahan pimpinan...">${escapeHtml(mt.notulen||'')}</textarea></div>
+          </div>
+
+          <div class="prog-section">
+            <div class="prog-section-head">
+              <span class="t">Progress / Hasil Tindak Lanjut</span>
+            </div>
+            ${ (mt.progress&&mt.progress.length) ? `
+            <table class="prog-table">
+              <thead><tr><th>Item / Hasil</th><th>PIC</th><th>Target</th><th>Status</th><th></th></tr></thead>
+              <tbody>${progRows}</tbody>
+            </table>` : `<div class="prog-empty">Belum ada item progress. Tambahkan untuk memonitor tindak lanjut rapat.</div>`}
+            <div style="margin-top:8px;">
+              <button class="btn btn-ghost" data-action="add-row">+ Tambah Item Progress</button>
+            </div>
+          </div>
+
+          <div class="meeting-actions">
+            <button class="btn btn-del" data-action="delete">Hapus Rapat</button>
+            <button class="btn btn-save" data-action="save">Simpan</button>
+          </div>
+        </div>`;
+      });
+    }
+
+    const already = new Set(dayMeetings.map(m=>m.bagianId));
+    const remaining = BAGIAN.filter(b=>!already.has(b.id));
+    if(remaining.length){
+      html += `
+      <div class="add-select-row">
+        <select id="addBagianSelect">
+          ${remaining.map(b=>`<option value="${b.id}">${b.name}</option>`).join('')}
+        </select>
+      </div>
+      <button class="btn btn-add" id="addMeetingBtn">+ Tambah Rapat Bagian pada Tanggal Ini</button>`;
+    }
+
+    body.innerHTML = html;
+
+    /* ---- bind per meeting card ---- */
+    body.querySelectorAll('.meeting-card').forEach(card=>{
+      const id = card.getAttribute('data-id');
+      const getMt = ()=>meetings.find(m=>m.id===id);
+
+      function collectCard(){
+        const mt = getMt();
+        mt.time    = card.querySelector('[data-field="time"]').value;
+        mt.status  = card.querySelector('[data-field="status"]').value;
+        mt.agenda  = card.querySelector('[data-field="agenda"]').value;
+        mt.notulen = card.querySelector('[data-field="notulen"]').value;
+        const rows = card.querySelectorAll('table.prog-table tbody tr');
+        const prog = [];
+        rows.forEach(tr=>{
+          prog.push({
+            item:   tr.querySelector('[data-pfield="item"]').value,
+            pic:    tr.querySelector('[data-pfield="pic"]').value,
+            target: tr.querySelector('[data-pfield="target"]').value,
+            status: tr.querySelector('[data-pfield="status"]').value,
+          });
+        });
+        mt.progress = prog;
+      }
+
+      card.querySelector('[data-action="save"]').onclick = async ()=>{
+        collectCard();
+        await saveMeetings();
+        renderCalendar();
+        renderModalBody(ds);
+      };
+      card.querySelector('[data-action="delete"]').onclick = async ()=>{
+        meetings = meetings.filter(m=>m.id!==id);
+        await saveMeetings();
+        renderCalendar();
+        refreshModalSub(ds);
+        renderModalBody(ds);
+      };
+      card.querySelector('[data-action="add-row"]').onclick = async ()=>{
+        collectCard(); // simpan input yang sedang diketik agar tidak hilang
+        getMt().progress.push({item:'',pic:'',target:'',status:'open'});
+        await saveMeetings();
+        renderModalBody(ds);
+      };
+      card.querySelectorAll('[data-action="del-row"]').forEach(btn=>{
+        btn.onclick = async ()=>{
+          collectCard();
+          const idx = parseInt(btn.closest('tr').getAttribute('data-idx'),10);
+          getMt().progress.splice(idx,1);
+          await saveMeetings();
+          renderCalendar();
+          renderModalBody(ds);
+        };
+      });
+      // pewarnaan status progress saat diganti
+      card.querySelectorAll('select[data-pfield="status"]').forEach(sel=>{
+        sel.onchange = ()=>{ sel.className = 'prog-status s-'+sel.value; };
+      });
+    });
+
+    const addBtn = document.getElementById('addMeetingBtn');
+    if(addBtn){
+      addBtn.onclick = async ()=>{
+        const bId = document.getElementById('addBagianSelect').value;
+        meetings.push({
+          id: ds+'-'+bId+'-'+Date.now(), date: ds, bagianId: bId,
+          time:'09:00', agenda:'Rapat '+bagianMap[bId].name,
+          notulen:'', status:'tentative', progress:[]
+        });
+        await saveMeetings();
+        renderCalendar();
+        refreshModalSub(ds);
+        renderModalBody(ds);
+      };
+    }
+  }
+
+  document.getElementById('closeModal').onclick = ()=>document.getElementById('overlay').classList.remove('show');
+  document.getElementById('overlay').onclick = e=>{
+    if(e.target.id==='overlay') document.getElementById('overlay').classList.remove('show');
+  };
+  document.getElementById('prevBtn').onclick = ()=>{ activeMonthIdx=(activeMonthIdx-1+MONTH_LIST.length)%MONTH_LIST.length; renderCalendar(); };
+  document.getElementById('nextBtn').onclick = ()=>{ activeMonthIdx=(activeMonthIdx+1)%MONTH_LIST.length; renderCalendar(); };
+
+  /* ================= Init ================= */
+  async function init(){
+    const db = document.getElementById('dbStatus');
+    db.innerHTML = API_URL
+      ? '🟢 Database: Google Sheets (tersinkron ke semua pengguna)'
+      : '🟠 Database: lokal browser ini saja — isi API_URL untuk sinkronisasi semua pengguna';
+    renderLegend();
+    await loadMeetings();
+    showView('login');
+  }
+  init();
+})();
+</script>
+</body>
+</html>
