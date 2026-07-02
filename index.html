@@ -8,353 +8,237 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy-900:#071c33;
-    --navy-800:#0c2a4d;
-    --blue-700:#0e4a86;
-    --blue-500:#1f6fc4;
-    --sky:#dbe8fb;
-    --bg:#eef2f8;
-    --surface:#ffffff;
-    --ink:#16263b;
-    --muted:#64748b;
-    --line:#dde5f0;
-    --line-soft:#eef2f8;
-
-    --c-pemeliharaan:#0f9b8e;
-    --c-fasop:#d98c1f;
-    --c-opsis:#7a5af5;
-    --c-perencanaan:#1f6fc4;
-    --c-ku:#3fa34d;
-    --c-pengadaan:#d9527a;
-
-    --radius:14px;
-    --shadow:0 8px 24px -12px rgba(7,28,51,0.18);
+    --navy-900:#071c33; --navy-800:#0c2a4d; --blue-700:#0e4a86; --blue-500:#1f6fc4;
+    --sky:#dbe8fb; --bg:#eef2f8; --surface:#ffffff; --ink:#16263b; --muted:#64748b;
+    --line:#dde5f0; --line-soft:#eef2f8;
+    --c-pemeliharaan:#0f9b8e; --c-fasop:#d98c1f; --c-opsis:#7a5af5;
+    --c-perencanaan:#1f6fc4; --c-ku:#3fa34d; --c-pengadaan:#d9527a;
+    --radius:14px; --shadow:0 8px 24px -12px rgba(7,28,51,0.18);
   }
   *{box-sizing:border-box;}
   body{
     margin:0;
-    background:
-      radial-gradient(1200px 500px at 100% -10%, var(--sky) 0%, transparent 60%),
-      var(--bg);
-    color:var(--ink);
-    font-family:'Inter',system-ui,sans-serif;
-    -webkit-font-smoothing:antialiased;
+    background:radial-gradient(1200px 500px at 100% -10%, var(--sky) 0%, transparent 60%), var(--bg);
+    color:var(--ink); font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased;
   }
   .hidden{display:none !important;}
+  .wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px;}
 
   /* ============ LOGIN ============ */
   #loginView{
-    min-height:100vh;
-    display:flex;align-items:center;justify-content:center;
-    padding:20px;
+    min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;
     background:
       radial-gradient(900px 500px at 15% 20%, rgba(31,111,196,0.25) 0%, transparent 55%),
       radial-gradient(700px 500px at 90% 90%, rgba(15,155,142,0.18) 0%, transparent 55%),
       var(--navy-900);
   }
-  .login-card{
-    width:100%;max-width:400px;
-    background:#fff;border-radius:18px;
-    box-shadow:0 30px 70px -20px rgba(0,0,0,0.5);
-    overflow:hidden;
-  }
-  .login-brand{
-    background:linear-gradient(135deg, var(--navy-800), var(--blue-700));
-    color:#fff;padding:28px 28px 24px;
-  }
-  .login-brand .org{
-    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
-    opacity:.75;font-weight:600;margin-bottom:8px;
-  }
-  .login-brand h1{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:24px;margin:0;line-height:1.2;letter-spacing:-.01em;
-  }
+  .login-card{width:100%;max-width:400px;background:#fff;border-radius:18px;box-shadow:0 30px 70px -20px rgba(0,0,0,0.5);overflow:hidden;}
+  .login-brand{background:linear-gradient(135deg,var(--navy-800),var(--blue-700));color:#fff;padding:28px 28px 24px;}
+  .login-brand .org{font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.75;font-weight:600;margin-bottom:8px;}
+  .login-brand h1{font-family:'Space Grotesk',sans-serif;font-size:24px;margin:0;line-height:1.2;letter-spacing:-.01em;}
   .login-brand p{margin:8px 0 0;font-size:12.5px;opacity:.8;}
   .login-body{padding:26px 28px 30px;}
   .login-body label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:0 0 6px;}
-  .login-body input{
-    width:100%;border:1px solid var(--line);border-radius:10px;
-    padding:11px 13px;font-size:14px;font-family:inherit;margin-bottom:16px;
-    background:#fbfcfe;
-  }
+  .login-body input{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:14px;font-family:inherit;margin-bottom:16px;background:#fbfcfe;}
   .login-body input:focus{outline:2px solid var(--blue-500);outline-offset:1px;border-color:var(--blue-500);}
-  .login-err{
-    background:#fdf0f2;color:#b02a3d;border:1px solid #f0d0d5;
-    font-size:12.5px;padding:9px 12px;border-radius:8px;margin-bottom:14px;display:none;
-  }
+  .login-err{background:#fdf0f2;color:#b02a3d;border:1px solid #f0d0d5;font-size:12.5px;padding:9px 12px;border-radius:8px;margin-bottom:14px;display:none;}
   .login-err.show{display:block;}
-  .btn-login{
-    width:100%;border:none;border-radius:10px;padding:12px;
-    background:var(--blue-500);color:#fff;font-weight:700;font-size:14px;
-    cursor:pointer;font-family:'Space Grotesk',sans-serif;letter-spacing:.02em;
-  }
+  .btn-login{width:100%;border:none;border-radius:10px;padding:12px;background:var(--blue-500);color:#fff;font-weight:700;font-size:14px;cursor:pointer;font-family:'Space Grotesk',sans-serif;letter-spacing:.02em;}
   .btn-login:hover{background:var(--blue-700);}
   .login-hint{margin-top:14px;font-size:11.5px;color:var(--muted);text-align:center;}
 
-  /* ============ COVER / LANDING ============ */
-  #coverView{
-    min-height:100vh;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;text-align:center;
-    padding:40px 20px;
-    background:
-      radial-gradient(900px 500px at 20% 15%, rgba(31,111,196,0.22) 0%, transparent 55%),
-      radial-gradient(700px 500px at 85% 85%, rgba(15,155,142,0.16) 0%, transparent 55%),
-      var(--navy-900);
-    color:#fff;
-  }
-  .cover-org{
-    font-size:12px;letter-spacing:.2em;text-transform:uppercase;
-    opacity:.7;font-weight:600;margin-bottom:18px;
-  }
-  #coverView h1{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:clamp(34px,6vw,58px);
-    margin:0;line-height:1.05;letter-spacing:-.02em;
-    max-width:760px;
-  }
-  #coverView h1 .accent{color:#7db8f0;}
-  .cover-sub{
-    margin:18px auto 0;max-width:560px;
-    font-size:15px;line-height:1.65;opacity:.82;
-  }
-  .cover-stats{
-    display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:30px;
-  }
-  .cover-stat{
-    background:rgba(255,255,255,0.07);
-    border:1px solid rgba(255,255,255,0.14);
-    border-radius:12px;padding:14px 22px;min-width:130px;
-    backdrop-filter:blur(4px);
-  }
-  .cover-stat .v{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;}
-  .cover-stat .k{font-size:11.5px;opacity:.7;margin-top:3px;}
-  .btn-enter{
-    margin-top:36px;border:none;border-radius:12px;
-    padding:15px 34px;font-size:15px;font-weight:700;
-    background:#fff;color:var(--navy-900);cursor:pointer;
-    font-family:'Space Grotesk',sans-serif;letter-spacing:.02em;
-    box-shadow:0 16px 40px -12px rgba(0,0,0,0.5);
-    transition:.15s;
-  }
-  .btn-enter:hover{transform:translateY(-2px);}
-  .cover-foot{margin-top:44px;font-size:11.5px;opacity:.55;}
-
-  /* ============ APP ============ */
-  .wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px;}
+  /* ============ TOPBAR ============ */
   .topbar{
-    display:flex;justify-content:space-between;align-items:center;
-    gap:14px;flex-wrap:wrap;
-    background:var(--navy-900);color:#fff;
-    padding:14px 20px;border-radius:14px;margin-bottom:20px;
+    display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+    background:var(--navy-900);color:#fff;padding:14px 20px;border-radius:14px;margin-bottom:20px;
   }
-  .topbar .tb-title{
-    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;
-    display:flex;align-items:center;gap:10px;
-  }
-  .tb-badge{
-    background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18);
-    font-size:11px;padding:3px 10px;border-radius:999px;font-weight:600;
-  }
-  .tb-right{display:flex;align-items:center;gap:12px;font-size:12.5px;}
-  .tb-user{opacity:.85;}
-  .btn-logout{
-    border:1px solid rgba(255,255,255,0.25);background:transparent;color:#fff;
-    border-radius:8px;padding:6px 13px;font-size:12px;font-weight:600;cursor:pointer;
-    font-family:inherit;
-  }
-  .btn-logout:hover{background:rgba(255,255,255,0.1);}
+  .tb-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .tb-badge{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18);font-size:11px;padding:3px 10px;border-radius:999px;font-weight:600;}
+  .tb-right{display:flex;align-items:center;gap:10px;font-size:12.5px;}
+  .btn-tb{border:1px solid rgba(255,255,255,0.25);background:transparent;color:#fff;border-radius:8px;padding:6px 13px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;}
+  .btn-tb:hover{background:rgba(255,255,255,0.1);}
 
-  header.page-head{
-    display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;
-    gap:16px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--line);
+  /* ============ PORTAL ============ */
+  #portalView .hero{
+    background:
+      radial-gradient(700px 340px at 12% 0%, rgba(31,111,196,0.35) 0%, transparent 60%),
+      radial-gradient(500px 300px at 95% 100%, rgba(15,155,142,0.25) 0%, transparent 60%),
+      var(--navy-900);
+    color:#fff;border-radius:18px;padding:38px 34px;margin-bottom:22px;
   }
-  .eyebrow{
-    font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--blue-500);font-weight:600;margin:0 0 6px;
+  .hero .org{font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.7;font-weight:600;margin-bottom:12px;}
+  .hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4.5vw,42px);margin:0;line-height:1.08;letter-spacing:-.02em;}
+  .hero h1 .accent{color:#7db8f0;}
+  .hero p{margin:12px 0 0;font-size:14px;opacity:.82;max-width:560px;line-height:1.6;}
+  .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;}
+  .menu-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:22px 20px;cursor:pointer;transition:.18s;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;
   }
-  h2.page-title{
-    font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,3vw,28px);
-    font-weight:700;margin:0;color:var(--navy-900);letter-spacing:-.01em;
+  .menu-card::after{
+    content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--mc,var(--blue-500));
   }
+  .menu-card:hover{transform:translateY(-3px);border-color:var(--mc,var(--blue-500));}
+  .menu-card .mnum{
+    font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
+    letter-spacing:.12em;color:var(--mc,var(--blue-500));text-transform:uppercase;
+  }
+  .menu-card .mic{font-size:26px;line-height:1;}
+  .menu-card h3{font-family:'Space Grotesk',sans-serif;font-size:16px;margin:0;color:var(--navy-900);line-height:1.25;}
+  .menu-card p{margin:0;font-size:12px;color:var(--muted);line-height:1.5;flex:1;}
+  .menu-card .mcount{font-size:11.5px;font-weight:700;color:var(--mc,var(--blue-500));}
+
+  /* ============ SUBVIEW COMMON ============ */
+  header.page-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-500);font-weight:600;margin:0 0 6px;}
+  h2.page-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,3vw,28px);font-weight:700;margin:0;color:var(--navy-900);letter-spacing:-.01em;}
   .sub{color:var(--muted);font-size:13.5px;margin-top:6px;}
-  .period-badge{
-    font-family:'Space Grotesk',sans-serif;background:var(--navy-900);color:#fff;
-    padding:10px 16px;border-radius:10px;font-size:13px;font-weight:600;white-space:nowrap;
+  .period-badge{font-family:'Space Grotesk',sans-serif;background:var(--navy-900);color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;font-weight:600;white-space:nowrap;}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;}
+  .btn{border:none;border-radius:8px;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;}
+  .btn-save{background:var(--blue-500);color:#fff;}
+  .btn-save:hover{background:var(--blue-700);}
+  .btn-del{background:transparent;color:#c23;border:1px solid #f0d0d5;}
+  .btn-del:hover{background:#fdf0f2;}
+  .btn-add{background:var(--navy-900);color:#fff;padding:10px 16px;border-radius:10px;}
+  .btn-add:hover{background:var(--navy-800);}
+  .btn-ghost{background:#fff;border:1px dashed var(--blue-500);color:var(--blue-500);padding:8px 12px;border-radius:8px;}
+  .btn-ghost:hover{background:#f3f8ff;}
+  .field{flex:1;min-width:130px;}
+  .field label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600;}
+  .field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:inherit;font-size:13px;color:var(--ink);background:#fbfcfe;}
+  .field textarea{resize:vertical;min-height:52px;}
+  .field input:focus,.field textarea:focus,.field select:focus{outline:2px solid var(--blue-500);outline-offset:1px;border-color:var(--blue-500);}
+  .field-row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;}
+  .form-box{border:1px dashed var(--line);border-radius:12px;padding:14px 16px;margin-bottom:18px;background:#fbfcfe;}
+  .form-box .fb-title{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy-800);margin-bottom:2px;}
+  .list-item{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+    padding:13px 14px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;
+    background:#fff;
   }
+  .list-item .li-main{flex:1;min-width:0;}
+  .list-item .li-title{font-weight:700;font-size:13.5px;color:var(--navy-900);}
+  .list-item .li-title a{color:var(--blue-500);text-decoration:none;}
+  .list-item .li-title a:hover{text-decoration:underline;}
+  .list-item .li-sub{font-size:12px;color:var(--muted);margin-top:3px;word-break:break-all;}
+  .list-item .li-desc{font-size:12.5px;color:var(--ink);margin-top:5px;}
+  .li-actions{display:flex;gap:6px;flex-shrink:0;}
+  .kat-tag{font-size:10.5px;padding:2px 9px;border-radius:999px;font-weight:700;display:inline-block;margin-bottom:4px;}
+  .kat-pemeliharaan{background:#e0f5f3;color:#0b7a70;}
+  .kat-fasop{background:#fdf1de;color:#9a6410;}
+  .empty-note{text-align:center;color:var(--muted);font-size:13px;padding:22px 0;}
+  .filter-chips{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .fchip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;color:var(--muted);}
+  .fchip.on{background:var(--navy-900);color:#fff;border-color:var(--navy-900);}
 
-  .strip{
-    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-    padding:18px 22px 14px;margin-bottom:20px;box-shadow:var(--shadow);overflow-x:auto;
-  }
+  /* ============ RAPAT (kalender) ============ */
+  .strip{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px 14px;margin-bottom:20px;box-shadow:var(--shadow);overflow-x:auto;}
   .strip-months{display:grid;grid-template-columns:repeat(6,1fr);min-width:640px;position:relative;}
   .strip-months::before{content:'';position:absolute;top:9px;left:0;right:0;height:2px;background:var(--line);}
   .strip-month{text-align:center;position:relative;padding-top:22px;cursor:pointer;}
-  .strip-month .dot{
-    position:absolute;top:2px;left:50%;transform:translateX(-50%);
-    width:16px;height:16px;border-radius:50%;
-    background:var(--surface);border:2px solid var(--blue-500);transition:.15s;
-  }
+  .strip-month .dot{position:absolute;top:2px;left:50%;transform:translateX(-50%);width:16px;height:16px;border-radius:50%;background:var(--surface);border:2px solid var(--blue-500);transition:.15s;}
   .strip-month.active .dot{background:var(--blue-500);}
   .strip-month .lbl{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--muted);}
   .strip-month.active .lbl{color:var(--navy-900);}
   .strip-month .cnt{font-size:11px;color:var(--muted);margin-top:2px;}
-
   .legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
-  .chip{
-    display:flex;align-items:center;gap:7px;background:var(--surface);
-    border:1px solid var(--line);padding:7px 12px 7px 10px;border-radius:999px;
-    font-size:12.5px;font-weight:600;color:var(--ink);cursor:pointer;user-select:none;transition:.15s;
-  }
+  .chip{display:flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--line);padding:7px 12px 7px 10px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--ink);cursor:pointer;user-select:none;transition:.15s;}
   .chip .sw{width:10px;height:10px;border-radius:50%;flex:none;}
   .chip.off{opacity:.4;}
   .chip:hover{border-color:var(--blue-500);}
-
-  .cal-card{
-    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-    box-shadow:var(--shadow);padding:20px;
-  }
   .cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
   .cal-head h3{font-family:'Space Grotesk',sans-serif;font-size:18px;margin:0;color:var(--navy-900);}
   .cal-nav{display:flex;gap:6px;}
-  .cal-nav button{
-    border:1px solid var(--line);background:#fff;color:var(--navy-900);
-    width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:14px;
-  }
+  .cal-nav button{border:1px solid var(--line);background:#fff;color:var(--navy-900);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:14px;}
   .cal-nav button:hover{border-color:var(--blue-500);color:var(--blue-500);}
-  .dow{
-    display:grid;grid-template-columns:repeat(7,1fr);font-size:11px;font-weight:700;
-    color:var(--muted);letter-spacing:.06em;text-transform:uppercase;padding:0 2px 8px;
-  }
+  .dow{display:grid;grid-template-columns:repeat(7,1fr);font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;padding:0 2px 8px;}
   .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
-  .day{
-    min-height:92px;border:1px solid var(--line-soft);border-radius:10px;
-    padding:6px 6px 8px;background:#fbfcfe;cursor:pointer;transition:.15s;
-    display:flex;flex-direction:column;
-  }
+  .day{min-height:92px;border:1px solid var(--line-soft);border-radius:10px;padding:6px 6px 8px;background:#fbfcfe;cursor:pointer;transition:.15s;display:flex;flex-direction:column;}
   .day:hover{border-color:var(--blue-500);background:#f3f8ff;}
   .day.empty{background:transparent;border-color:transparent;cursor:default;}
   .day .num{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--ink);}
   .day.sun .num,.day.sat .num{color:var(--muted);}
   .dots{display:flex;flex-wrap:wrap;gap:3px;margin-top:auto;}
   .dots span{width:7px;height:7px;border-radius:50%;flex:none;}
-  .prog-mini{
-    font-size:9.5px;font-weight:700;margin-top:3px;
-    color:var(--blue-700);
-  }
+  .prog-mini{font-size:9.5px;font-weight:700;margin-top:3px;color:var(--blue-700);}
 
   /* ============ MODAL ============ */
-  .overlay{
-    position:fixed;inset:0;background:rgba(7,28,51,0.45);
-    display:none;align-items:center;justify-content:center;padding:20px;z-index:50;
-  }
+  .overlay{position:fixed;inset:0;background:rgba(7,28,51,0.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:50;}
   .overlay.show{display:flex;}
-  .modal{
-    background:#fff;border-radius:16px;max-width:760px;width:100%;
-    max-height:88vh;overflow-y:auto;box-shadow:0 24px 60px -12px rgba(7,28,51,0.4);
-  }
-  .modal-head{
-    padding:20px 22px 14px;border-bottom:1px solid var(--line);
-    display:flex;justify-content:space-between;align-items:flex-start;
-    position:sticky;top:0;background:#fff;z-index:2;
-  }
+  .modal{background:#fff;border-radius:16px;max-width:760px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 24px 60px -12px rgba(7,28,51,0.4);}
+  .modal-head{padding:20px 22px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;position:sticky;top:0;background:#fff;z-index:2;}
   .modal-head h3{font-family:'Space Grotesk',sans-serif;margin:0;font-size:17px;color:var(--navy-900);}
   .modal-head p{margin:3px 0 0;font-size:12.5px;color:var(--muted);}
-  .close-btn{
-    border:none;background:var(--line-soft);width:30px;height:30px;border-radius:8px;
-    cursor:pointer;font-size:16px;color:var(--muted);
-  }
+  .close-btn{border:none;background:var(--line-soft);width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:16px;color:var(--muted);}
   .close-btn:hover{background:var(--line);color:var(--ink);}
   .modal-body{padding:16px 22px 22px;}
-  .meeting-card{
-    border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:14px;
-    border-left:4px solid var(--blue-500);
-  }
+  .meeting-card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:14px;border-left:4px solid var(--blue-500);}
   .meeting-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;}
   .meeting-top .bagian-name{font-weight:700;font-size:13.5px;}
-  .field-row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;}
-  .field{flex:1;min-width:120px;}
-  .field label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600;}
-  .field input,.field textarea,.field select{
-    width:100%;border:1px solid var(--line);border-radius:8px;padding:7px 9px;
-    font-family:inherit;font-size:13px;color:var(--ink);background:#fbfcfe;
-  }
-  .field textarea{resize:vertical;min-height:56px;}
-  .field input:focus,.field textarea:focus,.field select:focus{
-    outline:2px solid var(--blue-500);outline-offset:1px;border-color:var(--blue-500);
-  }
   .meeting-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px;}
-  .btn{border:none;border-radius:8px;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;}
-  .btn-save{background:var(--blue-500);color:#fff;}
-  .btn-save:hover{background:var(--blue-700);}
-  .btn-del{background:transparent;color:#c23;border:1px solid #f0d0d5;}
-  .btn-del:hover{background:#fdf0f2;}
-  .btn-add{background:var(--navy-900);color:#fff;width:100%;padding:10px;border-radius:10px;margin-top:4px;}
-  .btn-add:hover{background:var(--navy-800);}
-  .btn-ghost{background:#fff;border:1px dashed var(--blue-500);color:var(--blue-500);width:100%;padding:8px;border-radius:8px;}
-  .btn-ghost:hover{background:#f3f8ff;}
   .status-tag{font-size:10.5px;padding:2px 8px;border-radius:999px;font-weight:600;}
   .status-tentative{background:#fef3e2;color:#9a6b0c;}
   .status-done{background:#e6f4ea;color:#1e7a37;}
-
-  /* ---- Progress table ---- */
-  .prog-section{
-    margin-top:14px;border-top:1px dashed var(--line);padding-top:12px;
-  }
-  .prog-section-head{
-    display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
-  }
-  .prog-section-head .t{
-    font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy-800);
-  }
-  table.prog-table{
-    width:100%;border-collapse:collapse;font-size:12.5px;
-  }
-  table.prog-table th{
-    text-align:left;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
-    color:var(--muted);font-weight:700;padding:6px 8px;border-bottom:1px solid var(--line);
-    background:var(--line-soft);
-  }
-  table.prog-table td{
-    padding:5px 6px;border-bottom:1px solid var(--line-soft);vertical-align:top;
-  }
-  table.prog-table input, table.prog-table select{
-    width:100%;border:1px solid transparent;border-radius:6px;padding:5px 7px;
-    font-family:inherit;font-size:12.5px;background:transparent;color:var(--ink);
-  }
-  table.prog-table input:hover, table.prog-table select:hover{border-color:var(--line);}
-  table.prog-table input:focus, table.prog-table select:focus{
-    outline:none;border-color:var(--blue-500);background:#fff;
-  }
+  .prog-section{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px;}
+  .prog-section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+  .prog-section-head .t{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy-800);}
+  table.prog-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  table.prog-table th{text-align:left;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:6px 8px;border-bottom:1px solid var(--line);background:var(--line-soft);}
+  table.prog-table td{padding:5px 6px;border-bottom:1px solid var(--line-soft);vertical-align:top;}
+  table.prog-table input,table.prog-table select{width:100%;border:1px solid transparent;border-radius:6px;padding:5px 7px;font-family:inherit;font-size:12.5px;background:transparent;color:var(--ink);}
+  table.prog-table input:hover,table.prog-table select:hover{border-color:var(--line);}
+  table.prog-table input:focus,table.prog-table select:focus{outline:none;border-color:var(--blue-500);background:#fff;}
   .prog-status{font-weight:600;}
   .prog-status.s-open{color:#9a6b0c;}
   .prog-status.s-progress{color:var(--blue-700);}
   .prog-status.s-done{color:#1e7a37;}
-  .row-del{
-    border:none;background:transparent;color:#c9aeb4;cursor:pointer;font-size:14px;padding:2px 6px;
-  }
+  .row-del{border:none;background:transparent;color:#c9aeb4;cursor:pointer;font-size:14px;padding:2px 6px;}
   .row-del:hover{color:#c23;}
   .prog-empty{font-size:12px;color:var(--muted);padding:8px 4px;}
-
   .empty-day{text-align:center;color:var(--muted);font-size:13px;padding:20px 0;}
   .add-select-row{display:flex;gap:8px;margin-top:6px;}
   .add-select-row select{flex:1;border:1px solid var(--line);border-radius:8px;padding:8px;font-family:inherit;font-size:13px;}
+  .notulen-file-row{
+    display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap;
+    background:#f7fafd;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  }
+  .notulen-file-row .nf-label{font-size:11px;font-weight:700;color:var(--navy-800);letter-spacing:.05em;text-transform:uppercase;}
+  .notulen-file-row a{font-size:12.5px;color:var(--blue-500);font-weight:600;text-decoration:none;word-break:break-all;}
+  .notulen-file-row a:hover{text-decoration:underline;}
+  .upl-status{font-size:11.5px;color:var(--muted);}
 
-  .footnote{
-    margin-top:16px;font-size:12px;color:var(--muted);text-align:center;
-    display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;
+  /* ============ AGENDA mini cal ============ */
+  .agenda-layout{display:grid;grid-template-columns:340px 1fr;gap:18px;}
+  @media (max-width:820px){.agenda-layout{grid-template-columns:1fr;}}
+  .mini-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+  .mini-day{
+    aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-size:12px;font-weight:600;cursor:pointer;border:1px solid transparent;position:relative;
   }
-  .save-indicator{
-    display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--muted);
-    opacity:0;transition:opacity .3s;
+  .mini-day:hover{border-color:var(--blue-500);}
+  .mini-day.has::after{content:'';width:5px;height:5px;border-radius:50%;background:var(--blue-500);position:absolute;bottom:5px;}
+  .mini-day.selected{background:var(--navy-900);color:#fff;}
+  .mini-day.other{color:#c3ccda;}
+
+  /* ============ FILES ============ */
+  .file-drop{
+    border:2px dashed var(--line);border-radius:14px;padding:26px;text-align:center;
+    background:#fbfcfe;margin-bottom:18px;
   }
+  .file-drop .fd-icon{font-size:30px;}
+  .file-drop p{margin:8px 0 12px;font-size:13px;color:var(--muted);}
+
+  .footnote{margin-top:16px;font-size:12px;color:var(--muted);text-align:center;display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;}
+  .save-indicator{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--muted);opacity:0;transition:opacity .3s;}
   .save-indicator.show{opacity:1;}
   .save-indicator .pulse{width:6px;height:6px;border-radius:50%;background:#3fa34d;}
 
   @media (max-width:640px){
     .day{min-height:66px;}
     .strip-months{min-width:560px;}
-    table.prog-table th:nth-child(3), table.prog-table td:nth-child(3){display:none;}
+    table.prog-table th:nth-child(3),table.prog-table td:nth-child(3){display:none;}
   }
 </style>
 </head>
@@ -366,7 +250,7 @@
     <div class="login-brand">
       <div class="org">PT PLN (Persero) · UP2D Jawa Timur</div>
       <h1>Web Base<br>Rapat Harian</h1>
-      <p>Manajemen jadwal, notulen, dan progress rapat perbagian</p>
+      <p>Portal rapat, notulen, progress, dan tindak lanjut pekerjaan</p>
     </div>
     <div class="login-body">
       <div class="login-err" id="loginErr">Username atau password salah.</div>
@@ -381,79 +265,224 @@
   </div>
 </div>
 
-<!-- ============ COVER ============ -->
-<div id="coverView" class="hidden">
-  <div class="cover-org">PT PLN (Persero) · UP2D Jawa Timur</div>
-  <h1>Web Base<br><span class="accent">Rapat Harian</span></h1>
-  <p class="cover-sub">
-    Platform terpadu penjadwalan rapat perbagian, pencatatan notulen, dan monitoring
-    progress tindak lanjut — Semester II Tahun 2026.
-  </p>
-  <div class="cover-stats" id="coverStats">
-    <div class="cover-stat"><div class="v">6</div><div class="k">Bagian</div></div>
-    <div class="cover-stat"><div class="v" id="statMeetings">—</div><div class="k">Rapat Terjadwal</div></div>
-    <div class="cover-stat"><div class="v" id="statDone">—</div><div class="k">Terlaksana</div></div>
-    <div class="cover-stat"><div class="v" id="statProgress">—</div><div class="k">Item Progress</div></div>
-  </div>
-  <button class="btn-enter" id="enterBtn">Buka Kalender Rapat →</button>
-  <div class="cover-foot">Periode 6 Juli — 31 Desember 2026 · Bagian Perencanaan</div>
-</div>
-
-<!-- ============ APP ============ -->
-<div id="appView" class="hidden">
+<!-- ============ APP SHELL ============ -->
+<div id="appShell" class="hidden">
 <div class="wrap">
 
   <div class="topbar">
     <div class="tb-title">Web Base Rapat Harian <span class="tb-badge">Semester II · 2026</span></div>
     <div class="tb-right">
-      <span class="tb-user">👤 admin</span>
-      <button class="btn-logout" id="homeBtn">Halaman Muka</button>
-      <button class="btn-logout" id="logoutBtn">Keluar</button>
+      <span style="opacity:.85">👤 admin</span>
+      <button class="btn-tb hidden" id="backBtn">← Portal</button>
+      <button class="btn-tb" id="logoutBtn">Keluar</button>
     </div>
   </div>
 
-  <header class="page-head">
-    <div>
-      <p class="eyebrow">UP2D Jawa Timur · Bagian Perencanaan</p>
-      <h2 class="page-title">Kalender Rapat Perbagian</h2>
-      <p class="sub">Jadwal tentatif — klik tanggal untuk mengisi notulen &amp; progress tindak lanjut</p>
+  <!-- ======== PORTAL ======== -->
+  <div id="portalView">
+    <div class="hero">
+      <div class="org">PT PLN (Persero) · UP2D Jawa Timur · Bagian Perencanaan</div>
+      <h1>Web Base<br><span class="accent">Rapat Harian</span></h1>
+      <p>Portal terpadu penjadwalan rapat perbagian, notulen &amp; progress, tautan kerja, tindak lanjut pekerjaan, dan agenda — Semester II Tahun 2026.</p>
     </div>
-    <div class="period-badge">6 Jul — 31 Des 2026</div>
-  </header>
-
-  <div class="strip"><div class="strip-months" id="stripMonths"></div></div>
-
-  <div class="legend" id="legend"></div>
-
-  <div class="cal-card">
-    <div class="cal-head">
-      <h3 id="calTitle">Juli 2026</h3>
-      <div class="cal-nav">
-        <button id="prevBtn" aria-label="Bulan sebelumnya">‹</button>
-        <button id="nextBtn" aria-label="Bulan berikutnya">›</button>
+    <div class="menu-grid">
+      <div class="menu-card" style="--mc:var(--c-perencanaan)" data-nav="rapat">
+        <span class="mnum">Menu 01</span>
+        <span class="mic">📅</span>
+        <h3>Monitoring Rapat Perbagian</h3>
+        <p>Kalender rapat 6 bagian, notulen, upload notulen PDF, dan tabel progress tindak lanjut.</p>
+        <span class="mcount" id="cntRapat">— rapat</span>
+      </div>
+      <div class="menu-card" style="--mc:var(--c-ku)" data-nav="links">
+        <span class="mnum">Menu 02</span>
+        <span class="mic">🔗</span>
+        <h3>Link Penting</h3>
+        <p>Kumpulan tautan kerja beserta judulnya — dapat ditambah, diubah, dan dihapus.</p>
+        <span class="mcount" id="cntLinks">— link</span>
+      </div>
+      <div class="menu-card" style="--mc:var(--c-fasop)" data-nav="tl">
+        <span class="mnum">Menu 03</span>
+        <span class="mic">🛠️</span>
+        <h3>Tindak Lanjut Pekerjaan</h3>
+        <p>Tautan tindak lanjut pekerjaan Bagian Pemeliharaan dan Bagian Fasop.</p>
+        <span class="mcount" id="cntTl">— item</span>
+      </div>
+      <div class="menu-card" style="--mc:var(--c-opsis)" data-nav="agenda">
+        <span class="mnum">Menu 04</span>
+        <span class="mic">🗓️</span>
+        <h3>Agenda Jadwal</h3>
+        <p>Isian agenda/jadwal apapun — tampilan list dan kalender mini.</p>
+        <span class="mcount" id="cntAgenda">— agenda</span>
+      </div>
+      <div class="menu-card" style="--mc:var(--c-pengadaan)" data-nav="files">
+        <span class="mnum">Arsip</span>
+        <span class="mic">📁</span>
+        <h3>Arsip File (Google Drive)</h3>
+        <p>Upload file apapun — tersimpan otomatis di folder Google Drive dan terdaftar di sini.</p>
+        <span class="mcount" id="cntFiles">— file</span>
       </div>
     </div>
-    <div class="dow">
-      <div>Sen</div><div>Sel</div><div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div><div>Min</div>
+  </div>
+
+  <!-- ======== MENU 1: RAPAT ======== -->
+  <div id="rapatView" class="hidden">
+    <header class="page-head">
+      <div>
+        <p class="eyebrow">Menu 01</p>
+        <h2 class="page-title">Monitoring Rapat Perbagian</h2>
+        <p class="sub">Klik tanggal untuk mengisi notulen, upload PDF, dan progress tindak lanjut</p>
+      </div>
+      <div class="period-badge">6 Jul — 31 Des 2026</div>
+    </header>
+    <div class="strip"><div class="strip-months" id="stripMonths"></div></div>
+    <div class="legend" id="legend"></div>
+    <div class="card">
+      <div class="cal-head">
+        <h3 id="calTitle">Juli 2026</h3>
+        <div class="cal-nav">
+          <button id="prevBtn">‹</button>
+          <button id="nextBtn">›</button>
+        </div>
+      </div>
+      <div class="dow"><div>Sen</div><div>Sel</div><div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div><div>Min</div></div>
+      <div class="grid" id="calGrid"></div>
     </div>
-    <div class="grid" id="calGrid"></div>
+  </div>
+
+  <!-- ======== MENU 2: LINKS ======== -->
+  <div id="linksView" class="hidden">
+    <header class="page-head">
+      <div>
+        <p class="eyebrow">Menu 02</p>
+        <h2 class="page-title">Link Penting</h2>
+        <p class="sub">Kumpulan tautan kerja beserta judulnya</p>
+      </div>
+    </header>
+    <div class="card">
+      <div class="form-box">
+        <div class="fb-title">Tambah Link Baru</div>
+        <div class="field-row">
+          <div class="field"><label>Judul Link</label><input type="text" id="lkJudul" placeholder="contoh: Dashboard SAIDI SAIFI"></div>
+          <div class="field"><label>Alamat (URL)</label><input type="url" id="lkUrl" placeholder="https://..."></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Keterangan (opsional)</label><input type="text" id="lkKet" placeholder="deskripsi singkat"></div>
+        </div>
+        <div class="meeting-actions"><button class="btn btn-add" id="lkAdd">+ Tambah Link</button></div>
+      </div>
+      <div id="lkList"></div>
+    </div>
+  </div>
+
+  <!-- ======== MENU 3: TINDAK LANJUT ======== -->
+  <div id="tlView" class="hidden">
+    <header class="page-head">
+      <div>
+        <p class="eyebrow">Menu 03</p>
+        <h2 class="page-title">Tindak Lanjut Pekerjaan</h2>
+        <p class="sub">Tautan tindak lanjut Bagian Pemeliharaan &amp; Bagian Fasop</p>
+      </div>
+    </header>
+    <div class="card">
+      <div class="form-box">
+        <div class="fb-title">Tambah Tindak Lanjut</div>
+        <div class="field-row">
+          <div class="field" style="max-width:220px;"><label>Bagian</label>
+            <select id="tlKat">
+              <option value="pemeliharaan">Bagian Pemeliharaan</option>
+              <option value="fasop">Bagian Fasop</option>
+            </select>
+          </div>
+          <div class="field"><label>Judul</label><input type="text" id="tlJudul" placeholder="contoh: TL Inspeksi Gardu Bulan Juli"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Alamat (URL)</label><input type="url" id="tlUrl" placeholder="https://..."></div>
+          <div class="field"><label>Keterangan (opsional)</label><input type="text" id="tlKet" placeholder="deskripsi singkat"></div>
+        </div>
+        <div class="meeting-actions"><button class="btn btn-add" id="tlAdd">+ Tambah Tindak Lanjut</button></div>
+      </div>
+      <div class="filter-chips" id="tlFilter">
+        <span class="fchip on" data-f="all">Semua</span>
+        <span class="fchip" data-f="pemeliharaan">Pemeliharaan</span>
+        <span class="fchip" data-f="fasop">Fasop</span>
+      </div>
+      <div id="tlList"></div>
+    </div>
+  </div>
+
+  <!-- ======== MENU 4: AGENDA ======== -->
+  <div id="agendaView" class="hidden">
+    <header class="page-head">
+      <div>
+        <p class="eyebrow">Menu 04</p>
+        <h2 class="page-title">Agenda Jadwal</h2>
+        <p class="sub">Isian agenda/jadwal apapun — list &amp; kalender mini</p>
+      </div>
+    </header>
+    <div class="card">
+      <div class="form-box">
+        <div class="fb-title">Tambah Agenda</div>
+        <div class="field-row">
+          <div class="field" style="max-width:170px;"><label>Tanggal</label><input type="date" id="agTgl"></div>
+          <div class="field" style="max-width:120px;"><label>Jam</label><input type="time" id="agJam"></div>
+          <div class="field"><label>Judul Agenda</label><input type="text" id="agJudul" placeholder="contoh: Rakor UP3 se-Jatim"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Keterangan (opsional)</label><input type="text" id="agKet" placeholder="tempat / catatan"></div>
+        </div>
+        <div class="meeting-actions"><button class="btn btn-add" id="agAdd">+ Tambah Agenda</button></div>
+      </div>
+      <div class="agenda-layout">
+        <div>
+          <div class="cal-head">
+            <h3 id="agCalTitle" style="font-size:15px;">Juli 2026</h3>
+            <div class="cal-nav">
+              <button id="agPrev">‹</button>
+              <button id="agNext">›</button>
+            </div>
+          </div>
+          <div class="dow" style="font-size:9.5px;"><div>Sen</div><div>Sel</div><div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div><div>Min</div></div>
+          <div class="mini-grid" id="agMini"></div>
+          <p style="font-size:11.5px;color:var(--muted);margin-top:10px;">Titik = ada agenda. Klik tanggal untuk memfilter list; klik lagi untuk menampilkan semua.</p>
+        </div>
+        <div id="agList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== ARSIP FILE ======== -->
+  <div id="filesView" class="hidden">
+    <header class="page-head">
+      <div>
+        <p class="eyebrow">Arsip</p>
+        <h2 class="page-title">Arsip File (Google Drive)</h2>
+        <p class="sub">Semua file tersimpan di folder <b>WebBaseRapatHarian_Files</b> pada Google Drive</p>
+      </div>
+    </header>
+    <div class="card">
+      <div class="file-drop">
+        <div class="fd-icon">📁</div>
+        <p>Upload file apapun (maks. 20 MB) — dokumen, foto, PDF, Excel, dsb.</p>
+        <input type="file" id="fileInput" class="hidden">
+        <button class="btn btn-add" id="fileBtn">⬆ Pilih File &amp; Upload</button>
+        <div class="upl-status" id="fileStatus" style="margin-top:10px;"></div>
+      </div>
+      <div id="fileList"></div>
+    </div>
   </div>
 
   <div class="footnote">
-    <span>Titik warna = rapat bagian · Angka ▣ = jumlah item progress pada hari itu.</span>
+    <span>Database: Google Sheets · File: Google Drive · Semua perubahan tersinkron ke seluruh pengguna.</span>
     <span class="save-indicator" id="saveIndicator"><span class="pulse"></span>Tersimpan</span>
   </div>
 </div>
 </div>
 
-<!-- ============ MODAL ============ -->
+<!-- ============ MODAL RAPAT ============ -->
 <div class="overlay" id="overlay">
   <div class="modal">
     <div class="modal-head">
-      <div>
-        <h3 id="modalDate">Tanggal</h3>
-        <p id="modalSub"></p>
-      </div>
+      <div><h3 id="modalDate">Tanggal</h3><p id="modalSub"></p></div>
       <button class="close-btn" id="closeModal">✕</button>
     </div>
     <div class="modal-body" id="modalBody"></div>
@@ -462,323 +491,358 @@
 
 <script>
 (function(){
-  /* ================= Konfigurasi ================= */
-  const CREDENTIALS = { username:'admin', password:'admin' }; // demo — bukan keamanan sesungguhnya
-  const STORAGE_KEY = 'wbrh-meetings-sem2-2026';
+  /* ================= KONFIGURASI ================= */
+  const API_URL = "https://script.google.com/macros/s/AKfycbxbsMtVV5nZJBj2TMUHuvsERFU-auuc3bTxZUBRqUdy5e4DX23rPvFDtoita6cP6DGSMg/exec";
+  const CREDENTIALS = { username:'admin', password:'admin' }; // gerbang tampilan (client-side)
+  const KEY_MEET = 'wbrh2-meetings';
+  const KEY_PORTAL = 'wbrh2-portal';
+  const MAX_FILE_MB = 20;
 
   const BAGIAN = [
-    {id:'pemeliharaan', name:'Bagian Pemeliharaan',      color:'var(--c-pemeliharaan)', hex:'#0f9b8e'},
-    {id:'fasop',        name:'Bagian Fasop',              color:'var(--c-fasop)',        hex:'#d98c1f'},
-    {id:'opsis',        name:'Bagian Opsis',              color:'var(--c-opsis)',        hex:'#7a5af5'},
-    {id:'perencanaan',  name:'Bagian Perencanaan',        color:'var(--c-perencanaan)',  hex:'#1f6fc4'},
-    {id:'ku',           name:'Bagian KU',                 color:'var(--c-ku)',           hex:'#3fa34d'},
-    {id:'pengadaan',    name:'Bagian Pengadaan dan K3L',  color:'var(--c-pengadaan)',    hex:'#d9527a'},
+    {id:'pemeliharaan', name:'Bagian Pemeliharaan',     color:'var(--c-pemeliharaan)', hex:'#0f9b8e'},
+    {id:'fasop',        name:'Bagian Fasop',             color:'var(--c-fasop)',        hex:'#d98c1f'},
+    {id:'opsis',        name:'Bagian Opsis',             color:'var(--c-opsis)',        hex:'#7a5af5'},
+    {id:'perencanaan',  name:'Bagian Perencanaan',       color:'var(--c-perencanaan)',  hex:'#1f6fc4'},
+    {id:'ku',           name:'Bagian KU',                color:'var(--c-ku)',           hex:'#3fa34d'},
+    {id:'pengadaan',    name:'Bagian Pengadaan dan K3L', color:'var(--c-pengadaan)',    hex:'#d9527a'},
   ];
   const bagianMap = Object.fromEntries(BAGIAN.map(b=>[b.id,b]));
   const MONTHS = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
   const MONTH_LIST = [6,7,8,9,10,11];
   const YEAR = 2026;
 
+  let meetings = [];
+  let portal = {links:[], tindaklanjut:[], agenda:[], files:[]};
   let activeMonthIdx = 0;
   let activeFilters = new Set(BAGIAN.map(b=>b.id));
-  let meetings = [];
+  let tlFilterVal = 'all';
+  let agSelDate = null;
+  let agMonth = 6, agYear = 2026;
 
-  /* ================= Util ================= */
+  /* ================= UTIL ================= */
   function pad(n){return n<10?'0'+n:''+n;}
   function dateStr(y,m,d){return `${y}-${pad(m+1)}-${pad(d)}`;}
-  function dowMonFirst(jsDay){return jsDay===0?6:jsDay-1;}
-  function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-  function escapeAttr(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;');}
+  function dowMonFirst(js){return js===0?6:js-1;}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function escA(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;');}
+  function normDate(v){ // Sheets bisa mengembalikan ISO datetime → potong ke YYYY-MM-DD
+    if(!v) return '';
+    const s = String(v);
+    if(/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+    const d = new Date(s);
+    return isNaN(d) ? s.slice(0,10) : dateStr(d.getFullYear(), d.getMonth(), d.getDate());
+  }
   function fmtDateHuman(ds){
     const d = new Date(ds+'T00:00:00');
     const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
     return `${days[d.getDay()]}, ${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
   }
+  let saveTimer=null;
+  function badge(txt, ok){
+    const ind = document.getElementById('saveIndicator');
+    ind.innerHTML = `<span class="pulse" style="background:${ok?'#3fa34d':'#d98c1f'}"></span>${txt}`;
+    ind.classList.add('show');
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(()=>ind.classList.remove('show'),2200);
+  }
 
-  /* ================= Data ================= */
+  /* ================= DATA LAYER ================= */
   function seedMeetings(){
-    const dayBagianMap = {1:'pemeliharaan',2:'fasop',3:'opsis',4:'perencanaan',5:'ku',6:'pengadaan'};
-    const start = new Date(2026,6,6);
-    const end = new Date(2026,11,31);
+    const map = {1:'pemeliharaan',2:'fasop',3:'opsis',4:'perencanaan',5:'ku',6:'pengadaan'};
     const arr = [];
-    let cur = new Date(start);
-    while(cur <= end){
-      const bId = dayBagianMap[cur.getDay()];
+    let cur = new Date(2026,6,6);
+    const end = new Date(2026,11,31);
+    while(cur<=end){
+      const bId = map[cur.getDay()];
       if(bId){
-        const ds = dateStr(cur.getFullYear(), cur.getMonth(), cur.getDate());
-        arr.push({
-          id: ds+'-'+bId, date: ds, bagianId: bId,
-          time:'09:00', agenda:'Rapat Rutin '+bagianMap[bId].name,
-          notulen:'', status:'tentative', progress:[]
-        });
+        const ds = dateStr(cur.getFullYear(),cur.getMonth(),cur.getDate());
+        arr.push({id:ds+'-'+bId,date:ds,bagianId:bId,time:'09:00',
+          agenda:'Rapat Rutin '+bagianMap[bId].name,notulen:'',status:'tentative',
+          progress:[],notulenFileName:'',notulenFileUrl:''});
       }
       cur.setDate(cur.getDate()+1);
     }
     return arr;
   }
-
-  /* ---- Lapisan penyimpanan: Google Apps Script (database: Google Sheets di Google Drive) ----
-     Ganti API_URL di bawah dengan URL Web App hasil deploy Apps Script (lihat PANDUAN_DEPLOY).
-     Jika API_URL kosong, aplikasi tetap berjalan dengan penyimpanan lokal (localStorage)
-     di komputer masing-masing — namun data TIDAK tersinkron antar pengguna. */
-  const API_URL = "https://script.google.com/macros/s/AKfycbxbsMtVV5nZJBj2TMUHuvsERFU-auuc3bTxZUBRqUdy5e4DX23rPvFDtoita6cP6DGSMg/exec";
-
-  function setSyncBadge(txt, ok){
-    const ind = document.getElementById('saveIndicator');
-    ind.innerHTML = `<span class="pulse" style="background:${ok?'#3fa34d':'#d98c1f'}"></span>${txt}`;
-    ind.classList.add('show');
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(()=>ind.classList.remove('show'), 2200);
+  function normalizeMeetings(){
+    meetings.forEach(m=>{
+      m.date = normDate(m.date);
+      if(!Array.isArray(m.progress)) m.progress=[];
+      if(m.notulenFileName===undefined) m.notulenFileName='';
+      if(m.notulenFileUrl===undefined) m.notulenFileUrl='';
+    });
+  }
+  function normalizePortal(){
+    (portal.agenda||[]).forEach(a=>{ a.tanggal = normDate(a.tanggal); });
+    ['links','tindaklanjut','agenda','files'].forEach(k=>{ if(!Array.isArray(portal[k])) portal[k]=[]; });
   }
 
-  async function loadMeetings(){
-    // 1) Coba dari server (Google Sheets via Apps Script)
-    if(API_URL){
-      try{
-        const res = await fetch(API_URL + '?action=load', {method:'GET'});
-        const data = await res.json();
-        if(data && Array.isArray(data.meetings) && data.meetings.length){
-          meetings = data.meetings;
-          meetings.forEach(m=>{ if(!Array.isArray(m.progress)) m.progress = []; });
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(meetings)); // cache lokal
-          return;
-        }
-        // server kosong -> seed lalu simpan ke server
-        meetings = seedMeetings();
-        await saveMeetings();
-        return;
-      }catch(e){
-        console.warn('Server tidak terjangkau, memakai cache lokal.', e);
-        setSyncBadge('Offline — memakai data lokal', false);
-      }
-    }
-    // 2) Fallback: localStorage
+  async function loadAll(){
     try{
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if(raw){
-        meetings = JSON.parse(raw);
-        meetings.forEach(m=>{ if(!Array.isArray(m.progress)) m.progress = []; });
-        return;
+      const [r1,r2] = await Promise.all([
+        fetch(API_URL+'?action=load').then(r=>r.json()),
+        fetch(API_URL+'?action=portal').then(r=>r.json())
+      ]);
+      if(r1 && Array.isArray(r1.meetings)){
+        meetings = r1.meetings.length ? r1.meetings : seedMeetings();
+        if(!r1.meetings.length) await saveMeetings();
       }
-    }catch(e){/* seed */}
-    meetings = seedMeetings();
-    await saveMeetings();
-  }
-
-  let saveTimer = null;
-  async function saveMeetings(){
-    // Selalu simpan cache lokal dulu (agar tidak ada data hilang)
-    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(meetings)); }catch(e){}
-    if(!API_URL){
-      setSyncBadge('Tersimpan (lokal)', true);
-      return;
-    }
-    try{
-      // Content-Type text/plain menghindari preflight CORS pada Apps Script
-      const res = await fetch(API_URL, {
-        method:'POST',
-        headers:{'Content-Type':'text/plain;charset=utf-8'},
-        body: JSON.stringify({action:'save', meetings})
-      });
-      const data = await res.json();
-      if(data && data.ok){ setSyncBadge('Tersimpan ke server', true); }
-      else{ setSyncBadge('Gagal simpan ke server', false); }
+      if(r2 && r2.ok){
+        portal = {links:r2.links||[], tindaklanjut:r2.tindaklanjut||[], agenda:r2.agenda||[], files:r2.files||[]};
+      }
+      normalizeMeetings(); normalizePortal();
+      localStorage.setItem(KEY_MEET, JSON.stringify(meetings));
+      localStorage.setItem(KEY_PORTAL, JSON.stringify(portal));
+      return true;
     }catch(e){
-      console.error('Gagal menyimpan ke server', e);
-      setSyncBadge('Offline — tersimpan lokal', false);
+      console.warn('Server tidak terjangkau — memakai cache lokal', e);
+      try{ meetings = JSON.parse(localStorage.getItem(KEY_MEET)||'null') || seedMeetings(); }catch(x){ meetings=seedMeetings(); }
+      try{ portal = JSON.parse(localStorage.getItem(KEY_PORTAL)||'null') || portal; }catch(x){}
+      normalizeMeetings(); normalizePortal();
+      badge('Offline — memakai data lokal', false);
+      return false;
     }
   }
 
-  function meetingsForDate(ds){return meetings.filter(m=>m.date===ds && activeFilters.has(m.bagianId));}
-  function allMeetingsForDate(ds){return meetings.filter(m=>m.date===ds);}
-
-  /* ================= Views: login / cover / app ================= */
-  const views = {
-    login: document.getElementById('loginView'),
-    cover: document.getElementById('coverView'),
-    app:   document.getElementById('appView'),
-  };
-  function showView(name){
-    Object.entries(views).forEach(([k,el])=>el.classList.toggle('hidden', k!==name));
+  async function post(payload){
+    const res = await fetch(API_URL,{
+      method:'POST',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify(payload)
+    });
+    return res.json();
+  }
+  async function saveMeetings(){
+    try{ localStorage.setItem(KEY_MEET, JSON.stringify(meetings)); }catch(e){}
+    try{
+      const d = await post({action:'save', meetings});
+      badge(d&&d.ok ? 'Tersimpan ke server' : 'Gagal simpan ke server', !!(d&&d.ok));
+    }catch(e){ badge('Offline — tersimpan lokal', false); }
+  }
+  async function savePortal(part){
+    try{ localStorage.setItem(KEY_PORTAL, JSON.stringify(portal)); }catch(e){}
+    const payload = {action:'savePortal'};
+    payload[part] = portal[part==='tindaklanjut'?'tindaklanjut':part];
+    if(part==='links') payload.links = portal.links;
+    if(part==='tindaklanjut') payload.tindaklanjut = portal.tindaklanjut;
+    if(part==='agenda') payload.agenda = portal.agenda;
+    try{
+      const d = await post(payload);
+      badge(d&&d.ok ? 'Tersimpan ke server' : 'Gagal simpan ke server', !!(d&&d.ok));
+    }catch(e){ badge('Offline — tersimpan lokal', false); }
+  }
+  function fileToBase64(file){
+    return new Promise((res,rej)=>{
+      const r = new FileReader();
+      r.onload = ()=>res(String(r.result).split(',')[1]);
+      r.onerror = ()=>rej(new Error('Gagal membaca file'));
+      r.readAsDataURL(file);
+    });
+  }
+  async function uploadFile(file, context, statusEl){
+    if(file.size > MAX_FILE_MB*1024*1024){
+      if(statusEl) statusEl.textContent = `File melebihi ${MAX_FILE_MB} MB.`;
+      return null;
+    }
+    if(statusEl) statusEl.textContent = 'Mengunggah… mohon tunggu (jangan tutup halaman)';
+    try{
+      const b64 = await fileToBase64(file);
+      const d = await post({action:'upload', filename:file.name, mimeType:file.type||'application/octet-stream', data:b64, context:context||''});
+      if(d && d.ok){
+        portal.files.push({id:d.id, nama_file:d.name, url:d.url, mime_type:file.type||'', konteks:context||'', uploaded_at:new Date().toISOString()});
+        localStorage.setItem(KEY_PORTAL, JSON.stringify(portal));
+        if(statusEl) statusEl.textContent = 'Berhasil diunggah ✓';
+        badge('File tersimpan di Google Drive', true);
+        return d;
+      }
+      if(statusEl) statusEl.textContent = 'Gagal: '+(d&&d.error||'tidak diketahui');
+      return null;
+    }catch(e){
+      if(statusEl) statusEl.textContent = 'Gagal mengunggah — periksa koneksi.';
+      return null;
+    }
   }
 
+  /* ================= NAVIGASI ================= */
+  const VIEWS = ['portalView','rapatView','linksView','tlView','agendaView','filesView'];
+  function nav(view){
+    VIEWS.forEach(v=>document.getElementById(v).classList.toggle('hidden', v!==view));
+    document.getElementById('backBtn').classList.toggle('hidden', view==='portalView');
+    if(view==='portalView') renderPortalCounts();
+    if(view==='rapatView'){ renderLegend(); renderCalendar(); }
+    if(view==='linksView') renderLinks();
+    if(view==='tlView') renderTl();
+    if(view==='agendaView') renderAgenda();
+    if(view==='filesView') renderFiles();
+    window.scrollTo({top:0});
+  }
+  document.querySelectorAll('.menu-card').forEach(c=>{
+    c.onclick = ()=>nav(c.getAttribute('data-nav')==='rapat'?'rapatView':
+      c.getAttribute('data-nav')==='links'?'linksView':
+      c.getAttribute('data-nav')==='tl'?'tlView':
+      c.getAttribute('data-nav')==='agenda'?'agendaView':'filesView');
+  });
+  document.getElementById('backBtn').onclick = ()=>nav('portalView');
+
+  /* ================= LOGIN ================= */
   document.getElementById('loginBtn').onclick = doLogin;
-  document.getElementById('password').addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
+  document.getElementById('password').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
   function doLogin(){
-    const u = document.getElementById('username').value.trim();
-    const p = document.getElementById('password').value;
+    const u=document.getElementById('username').value.trim();
+    const p=document.getElementById('password').value;
     if(u===CREDENTIALS.username && p===CREDENTIALS.password){
       document.getElementById('loginErr').classList.remove('show');
-      sessionActive = true;
-      updateCoverStats();
-      showView('cover');
+      document.getElementById('loginView').classList.add('hidden');
+      document.getElementById('appShell').classList.remove('hidden');
+      nav('portalView');
     }else{
       document.getElementById('loginErr').classList.add('show');
     }
   }
-  let sessionActive = false;
-
-  document.getElementById('enterBtn').onclick = ()=>{ showView('app'); renderCalendar(); };
-  document.getElementById('homeBtn').onclick  = ()=>{ updateCoverStats(); showView('cover'); };
   document.getElementById('logoutBtn').onclick = ()=>{
-    sessionActive = false;
-    document.getElementById('username').value = '';
-    document.getElementById('password').value = '';
-    showView('login');
+    document.getElementById('appShell').classList.add('hidden');
+    document.getElementById('loginView').classList.remove('hidden');
+    document.getElementById('username').value='';
+    document.getElementById('password').value='';
   };
 
-  function updateCoverStats(){
-    const total = meetings.length;
-    const done = meetings.filter(m=>m.status==='done').length;
-    const prog = meetings.reduce((a,m)=>a+(m.progress?m.progress.length:0),0);
-    document.getElementById('statMeetings').textContent = total;
-    document.getElementById('statDone').textContent = done;
-    document.getElementById('statProgress').textContent = prog;
+  /* ================= PORTAL COUNTS ================= */
+  function renderPortalCounts(){
+    document.getElementById('cntRapat').textContent  = meetings.length+' rapat · '+meetings.filter(m=>m.status==='done').length+' terlaksana';
+    document.getElementById('cntLinks').textContent  = portal.links.length+' link';
+    document.getElementById('cntTl').textContent     = portal.tindaklanjut.length+' item';
+    document.getElementById('cntAgenda').textContent = portal.agenda.length+' agenda';
+    document.getElementById('cntFiles').textContent  = portal.files.length+' file';
   }
 
-  /* ================= Render: legend / strip / calendar ================= */
+  /* ================= MENU 1: RAPAT ================= */
+  function meetingsForDate(ds){return meetings.filter(m=>m.date===ds && activeFilters.has(m.bagianId));}
+  function allMeetingsForDate(ds){return meetings.filter(m=>m.date===ds);}
+
   function renderLegend(){
-    const el = document.getElementById('legend');
-    el.innerHTML = '';
+    const el=document.getElementById('legend'); el.innerHTML='';
     BAGIAN.forEach(b=>{
-      const chip = document.createElement('div');
-      chip.className = 'chip'+(activeFilters.has(b.id)?'':' off');
-      chip.innerHTML = `<span class="sw" style="background:${b.color}"></span>${b.name}`;
-      chip.onclick = ()=>{
-        if(activeFilters.has(b.id)) activeFilters.delete(b.id); else activeFilters.add(b.id);
-        renderLegend(); renderCalendar();
+      const chip=document.createElement('div');
+      chip.className='chip'+(activeFilters.has(b.id)?'':' off');
+      chip.innerHTML=`<span class="sw" style="background:${b.color}"></span>${b.name}`;
+      chip.onclick=()=>{
+        if(activeFilters.has(b.id))activeFilters.delete(b.id);else activeFilters.add(b.id);
+        renderLegend();renderCalendar();
       };
       el.appendChild(chip);
     });
   }
-
   function renderStrip(){
-    const el = document.getElementById('stripMonths');
-    el.innerHTML = '';
+    const el=document.getElementById('stripMonths'); el.innerHTML='';
     MONTH_LIST.forEach((m,idx)=>{
-      const count = meetings.filter(mt=>{
-        const d = new Date(mt.date+'T00:00:00');
-        return d.getMonth()===m && activeFilters.has(mt.bagianId);
+      const count=meetings.filter(mt=>{
+        const d=new Date(mt.date+'T00:00:00');
+        return d.getMonth()===m&&activeFilters.has(mt.bagianId);
       }).length;
-      const div = document.createElement('div');
-      div.className = 'strip-month'+(idx===activeMonthIdx?' active':'');
-      div.innerHTML = `<div class="dot"></div><div class="lbl">${MONTHS[m].slice(0,3)}</div><div class="cnt">${count} rapat</div>`;
-      div.onclick = ()=>{ activeMonthIdx = idx; renderCalendar(); };
+      const div=document.createElement('div');
+      div.className='strip-month'+(idx===activeMonthIdx?' active':'');
+      div.innerHTML=`<div class="dot"></div><div class="lbl">${MONTHS[m].slice(0,3)}</div><div class="cnt">${count} rapat</div>`;
+      div.onclick=()=>{activeMonthIdx=idx;renderCalendar();};
       el.appendChild(div);
     });
   }
-
   function renderCalendar(){
-    const m = MONTH_LIST[activeMonthIdx];
-    document.getElementById('calTitle').textContent = MONTHS[m]+' '+YEAR;
-    const grid = document.getElementById('calGrid');
-    grid.innerHTML = '';
-    const startOffset = dowMonFirst(new Date(YEAR,m,1).getDay());
-    const daysInMonth = new Date(YEAR,m+1,0).getDate();
-
-    for(let i=0;i<startOffset;i++){
-      const f = document.createElement('div'); f.className='day empty'; grid.appendChild(f);
-    }
-    for(let d=1; d<=daysInMonth; d++){
-      const ds = dateStr(YEAR,m,d);
-      const jsDay = new Date(YEAR,m,d).getDay();
-      const cell = document.createElement('div');
-      cell.className = 'day'+(jsDay===0?' sun':'')+(jsDay===6?' sat':'');
-      const dayMeetings = meetingsForDate(ds);
-      let dotsHtml = '';
-      dayMeetings.slice(0,6).forEach(mt=>{
-        dotsHtml += `<span style="background:${bagianMap[mt.bagianId].color}" title="${bagianMap[mt.bagianId].name}"></span>`;
-      });
-      const progCount = dayMeetings.reduce((a,mt)=>a+(mt.progress?mt.progress.length:0),0);
-      cell.innerHTML = `<div class="num">${d}</div><div class="dots">${dotsHtml}</div>`+
-        (progCount?`<div class="prog-mini">▣ ${progCount} progress</div>`:'');
-      cell.onclick = ()=>openModal(ds);
+    const m=MONTH_LIST[activeMonthIdx];
+    document.getElementById('calTitle').textContent=MONTHS[m]+' '+YEAR;
+    const grid=document.getElementById('calGrid'); grid.innerHTML='';
+    const off=dowMonFirst(new Date(YEAR,m,1).getDay());
+    const dim=new Date(YEAR,m+1,0).getDate();
+    for(let i=0;i<off;i++){const f=document.createElement('div');f.className='day empty';grid.appendChild(f);}
+    for(let d=1;d<=dim;d++){
+      const ds=dateStr(YEAR,m,d);
+      const js=new Date(YEAR,m,d).getDay();
+      const cell=document.createElement('div');
+      cell.className='day'+(js===0?' sun':'')+(js===6?' sat':'');
+      const dm=meetingsForDate(ds);
+      let dots='';
+      dm.slice(0,6).forEach(mt=>{dots+=`<span style="background:${bagianMap[mt.bagianId].color}" title="${bagianMap[mt.bagianId].name}"></span>`;});
+      const pc=dm.reduce((a,mt)=>a+(mt.progress?mt.progress.length:0),0);
+      cell.innerHTML=`<div class="num">${d}</div><div class="dots">${dots}</div>`+(pc?`<div class="prog-mini">▣ ${pc} progress</div>`:'');
+      cell.onclick=()=>openModal(ds);
       grid.appendChild(cell);
     }
     renderStrip();
   }
+  document.getElementById('prevBtn').onclick=()=>{activeMonthIdx=(activeMonthIdx-1+MONTH_LIST.length)%MONTH_LIST.length;renderCalendar();};
+  document.getElementById('nextBtn').onclick=()=>{activeMonthIdx=(activeMonthIdx+1)%MONTH_LIST.length;renderCalendar();};
 
-  /* ================= Modal ================= */
+  const STATUS_PROG=[{v:'open',l:'Open'},{v:'progress',l:'On Progress'},{v:'done',l:'Selesai'}];
+
   function openModal(ds){
-    document.getElementById('modalDate').textContent = fmtDateHuman(ds);
+    document.getElementById('modalDate').textContent=fmtDateHuman(ds);
     refreshModalSub(ds);
     renderModalBody(ds);
     document.getElementById('overlay').classList.add('show');
   }
   function refreshModalSub(ds){
-    const n = allMeetingsForDate(ds).length;
-    document.getElementById('modalSub').textContent = n ? `${n} rapat terjadwal` : 'Belum ada rapat pada tanggal ini';
+    const n=allMeetingsForDate(ds).length;
+    document.getElementById('modalSub').textContent=n?`${n} rapat terjadwal`:'Belum ada rapat pada tanggal ini';
   }
 
-  const STATUS_PROG = [
-    {v:'open',     l:'Open'},
-    {v:'progress', l:'On Progress'},
-    {v:'done',     l:'Selesai'},
-  ];
-
   function renderModalBody(ds){
-    const body = document.getElementById('modalBody');
-    const dayMeetings = allMeetingsForDate(ds);
-    let html = '';
-
+    const body=document.getElementById('modalBody');
+    const dayMeetings=allMeetingsForDate(ds);
+    let html='';
     if(dayMeetings.length===0){
-      html += `<div class="empty-day">Belum ada rapat. Tambahkan bagian di bawah.</div>`;
+      html+=`<div class="empty-day">Belum ada rapat. Tambahkan bagian di bawah.</div>`;
     }else{
       dayMeetings.forEach(mt=>{
-        const b = bagianMap[mt.bagianId];
-        const progRows = (mt.progress||[]).map((p,i)=>`
+        const b=bagianMap[mt.bagianId];
+        const progRows=(mt.progress||[]).map((p,i)=>`
           <tr data-idx="${i}">
-            <td><input type="text" value="${escapeAttr(p.item||'')}" data-pfield="item" placeholder="Uraian tindak lanjut"></td>
-            <td style="width:120px"><input type="text" value="${escapeAttr(p.pic||'')}" data-pfield="pic" placeholder="PIC"></td>
-            <td style="width:120px"><input type="text" value="${escapeAttr(p.target||'')}" data-pfield="target" placeholder="Target"></td>
-            <td style="width:130px">
-              <select data-pfield="status" class="prog-status s-${p.status||'open'}">
-                ${STATUS_PROG.map(s=>`<option value="${s.v}" ${(p.status||'open')===s.v?'selected':''}>${s.l}</option>`).join('')}
-              </select>
-            </td>
-            <td style="width:30px"><button class="row-del" data-action="del-row" title="Hapus baris">✕</button></td>
+            <td><input type="text" value="${escA(p.item||'')}" data-pfield="item" placeholder="Uraian tindak lanjut"></td>
+            <td style="width:110px"><input type="text" value="${escA(p.pic||'')}" data-pfield="pic" placeholder="PIC"></td>
+            <td style="width:110px"><input type="text" value="${escA(p.target||'')}" data-pfield="target" placeholder="Target"></td>
+            <td style="width:125px"><select data-pfield="status" class="prog-status s-${p.status||'open'}">
+              ${STATUS_PROG.map(s=>`<option value="${s.v}" ${(p.status||'open')===s.v?'selected':''}>${s.l}</option>`).join('')}
+            </select></td>
+            <td style="width:28px"><button class="row-del" data-action="del-row" title="Hapus">✕</button></td>
           </tr>`).join('');
 
-        html += `
+        const notulenFileHtml = mt.notulenFileUrl
+          ? `<span class="nf-label">Notulen PDF</span>
+             <a href="${escA(mt.notulenFileUrl)}" target="_blank" rel="noopener">📄 ${esc(mt.notulenFileName||'Lihat file')}</a>
+             <button class="btn btn-ghost" data-action="upl-notulen" style="width:auto;">Ganti PDF</button>`
+          : `<span class="nf-label">Notulen PDF</span>
+             <span class="upl-status">Belum ada file</span>
+             <button class="btn btn-ghost" data-action="upl-notulen" style="width:auto;">⬆ Upload Notulen (PDF)</button>`;
+
+        html+=`
         <div class="meeting-card" data-id="${mt.id}" style="border-left-color:${b.hex}">
           <div class="meeting-top">
             <span class="bagian-name" style="color:${b.hex}">${b.name}</span>
             <span class="status-tag ${mt.status==='done'?'status-done':'status-tentative'}">${mt.status==='done'?'Sudah dilaksanakan':'Tentatif'}</span>
           </div>
           <div class="field-row">
-            <div class="field" style="max-width:110px;">
-              <label>Jam</label>
-              <input type="time" value="${mt.time||'09:00'}" data-field="time">
-            </div>
-            <div class="field" style="max-width:190px;">
-              <label>Status Rapat</label>
+            <div class="field" style="max-width:110px;"><label>Jam</label>
+              <input type="time" value="${mt.time||'09:00'}" data-field="time"></div>
+            <div class="field" style="max-width:190px;"><label>Status Rapat</label>
               <select data-field="status">
                 <option value="tentative" ${mt.status==='tentative'?'selected':''}>Tentatif</option>
                 <option value="done" ${mt.status==='done'?'selected':''}>Sudah dilaksanakan</option>
-              </select>
-            </div>
+              </select></div>
           </div>
-          <div class="field-row">
-            <div class="field"><label>Agenda</label>
-              <input type="text" value="${escapeAttr(mt.agenda||'')}" data-field="agenda"></div>
-          </div>
-          <div class="field-row">
-            <div class="field"><label>Notulen</label>
-              <textarea data-field="notulen" placeholder="Isi hasil rapat, keputusan, dan arahan pimpinan...">${escapeHtml(mt.notulen||'')}</textarea></div>
-          </div>
+          <div class="field-row"><div class="field"><label>Agenda</label>
+            <input type="text" value="${escA(mt.agenda||'')}" data-field="agenda"></div></div>
+          <div class="field-row"><div class="field"><label>Notulen (teks)</label>
+            <textarea data-field="notulen" placeholder="Isi hasil rapat, keputusan, dan arahan pimpinan...">${esc(mt.notulen||'')}</textarea></div></div>
+
+          <div class="notulen-file-row">${notulenFileHtml}<span class="upl-status" data-role="nf-status"></span></div>
+          <input type="file" accept="application/pdf" class="hidden" data-role="nf-input">
 
           <div class="prog-section">
-            <div class="prog-section-head">
-              <span class="t">Progress / Hasil Tindak Lanjut</span>
-            </div>
-            ${ (mt.progress&&mt.progress.length) ? `
+            <div class="prog-section-head"><span class="t">Progress / Hasil Tindak Lanjut</span></div>
+            ${(mt.progress&&mt.progress.length)?`
             <table class="prog-table">
               <thead><tr><th>Item / Hasil</th><th>PIC</th><th>Target</th><th>Status</th><th></th></tr></thead>
               <tbody>${progRows}</tbody>
-            </table>` : `<div class="prog-empty">Belum ada item progress. Tambahkan untuk memonitor tindak lanjut rapat.</div>`}
-            <div style="margin-top:8px;">
-              <button class="btn btn-ghost" data-action="add-row">+ Tambah Item Progress</button>
-            </div>
+            </table>`:`<div class="prog-empty">Belum ada item progress.</div>`}
+            <div style="margin-top:8px;"><button class="btn btn-ghost" data-action="add-row">+ Tambah Item Progress</button></div>
           </div>
 
           <div class="meeting-actions">
@@ -788,113 +852,246 @@
         </div>`;
       });
     }
-
-    const already = new Set(dayMeetings.map(m=>m.bagianId));
-    const remaining = BAGIAN.filter(b=>!already.has(b.id));
+    const already=new Set(dayMeetings.map(m=>m.bagianId));
+    const remaining=BAGIAN.filter(b=>!already.has(b.id));
     if(remaining.length){
-      html += `
-      <div class="add-select-row">
-        <select id="addBagianSelect">
-          ${remaining.map(b=>`<option value="${b.id}">${b.name}</option>`).join('')}
-        </select>
-      </div>
-      <button class="btn btn-add" id="addMeetingBtn">+ Tambah Rapat Bagian pada Tanggal Ini</button>`;
+      html+=`<div class="add-select-row"><select id="addBagianSelect">
+        ${remaining.map(b=>`<option value="${b.id}">${b.name}</option>`).join('')}
+      </select></div>
+      <button class="btn btn-add" id="addMeetingBtn" style="width:100%;margin-top:6px;">+ Tambah Rapat Bagian pada Tanggal Ini</button>`;
     }
+    body.innerHTML=html;
 
-    body.innerHTML = html;
-
-    /* ---- bind per meeting card ---- */
     body.querySelectorAll('.meeting-card').forEach(card=>{
-      const id = card.getAttribute('data-id');
-      const getMt = ()=>meetings.find(m=>m.id===id);
-
-      function collectCard(){
-        const mt = getMt();
-        mt.time    = card.querySelector('[data-field="time"]').value;
-        mt.status  = card.querySelector('[data-field="status"]').value;
-        mt.agenda  = card.querySelector('[data-field="agenda"]').value;
-        mt.notulen = card.querySelector('[data-field="notulen"]').value;
-        const rows = card.querySelectorAll('table.prog-table tbody tr');
-        const prog = [];
-        rows.forEach(tr=>{
+      const id=card.getAttribute('data-id');
+      const getMt=()=>meetings.find(m=>m.id===id);
+      function collect(){
+        const mt=getMt();
+        mt.time=card.querySelector('[data-field="time"]').value;
+        mt.status=card.querySelector('[data-field="status"]').value;
+        mt.agenda=card.querySelector('[data-field="agenda"]').value;
+        mt.notulen=card.querySelector('[data-field="notulen"]').value;
+        const prog=[];
+        card.querySelectorAll('table.prog-table tbody tr').forEach(tr=>{
           prog.push({
-            item:   tr.querySelector('[data-pfield="item"]').value,
-            pic:    tr.querySelector('[data-pfield="pic"]').value,
-            target: tr.querySelector('[data-pfield="target"]').value,
-            status: tr.querySelector('[data-pfield="status"]').value,
+            item:tr.querySelector('[data-pfield="item"]').value,
+            pic:tr.querySelector('[data-pfield="pic"]').value,
+            target:tr.querySelector('[data-pfield="target"]').value,
+            status:tr.querySelector('[data-pfield="status"]').value,
           });
         });
-        mt.progress = prog;
+        mt.progress=prog;
       }
-
-      card.querySelector('[data-action="save"]').onclick = async ()=>{
-        collectCard();
-        await saveMeetings();
-        renderCalendar();
-        renderModalBody(ds);
+      card.querySelector('[data-action="save"]').onclick=async()=>{collect();await saveMeetings();renderCalendar();renderModalBody(ds);};
+      card.querySelector('[data-action="delete"]').onclick=async()=>{
+        meetings=meetings.filter(m=>m.id!==id);
+        await saveMeetings();renderCalendar();refreshModalSub(ds);renderModalBody(ds);
       };
-      card.querySelector('[data-action="delete"]').onclick = async ()=>{
-        meetings = meetings.filter(m=>m.id!==id);
-        await saveMeetings();
-        renderCalendar();
-        refreshModalSub(ds);
-        renderModalBody(ds);
-      };
-      card.querySelector('[data-action="add-row"]').onclick = async ()=>{
-        collectCard(); // simpan input yang sedang diketik agar tidak hilang
-        getMt().progress.push({item:'',pic:'',target:'',status:'open'});
-        await saveMeetings();
-        renderModalBody(ds);
+      card.querySelector('[data-action="add-row"]').onclick=async()=>{
+        collect();getMt().progress.push({item:'',pic:'',target:'',status:'open'});
+        await saveMeetings();renderModalBody(ds);
       };
       card.querySelectorAll('[data-action="del-row"]').forEach(btn=>{
-        btn.onclick = async ()=>{
-          collectCard();
-          const idx = parseInt(btn.closest('tr').getAttribute('data-idx'),10);
+        btn.onclick=async()=>{
+          collect();
+          const idx=parseInt(btn.closest('tr').getAttribute('data-idx'),10);
           getMt().progress.splice(idx,1);
-          await saveMeetings();
-          renderCalendar();
-          renderModalBody(ds);
+          await saveMeetings();renderCalendar();renderModalBody(ds);
         };
       });
-      // pewarnaan status progress saat diganti
       card.querySelectorAll('select[data-pfield="status"]').forEach(sel=>{
-        sel.onchange = ()=>{ sel.className = 'prog-status s-'+sel.value; };
+        sel.onchange=()=>{sel.className='prog-status s-'+sel.value;};
       });
+      // Upload notulen PDF
+      const nfInput=card.querySelector('[data-role="nf-input"]');
+      const nfStatus=card.querySelector('[data-role="nf-status"]');
+      card.querySelector('[data-action="upl-notulen"]').onclick=()=>nfInput.click();
+      nfInput.onchange=async()=>{
+        const f=nfInput.files[0];
+        if(!f)return;
+        if(f.type!=='application/pdf' && !f.name.toLowerCase().endsWith('.pdf')){
+          nfStatus.textContent='Hanya file PDF yang diperbolehkan.';return;
+        }
+        collect(); // simpan ketikan yang sedang berjalan
+        const d=await uploadFile(f,'notulen:'+id,nfStatus);
+        if(d){
+          const mt=getMt();
+          mt.notulenFileName=d.name; mt.notulenFileUrl=d.url;
+          await saveMeetings();
+          renderModalBody(ds);
+        }
+      };
     });
 
-    const addBtn = document.getElementById('addMeetingBtn');
+    const addBtn=document.getElementById('addMeetingBtn');
     if(addBtn){
-      addBtn.onclick = async ()=>{
-        const bId = document.getElementById('addBagianSelect').value;
-        meetings.push({
-          id: ds+'-'+bId+'-'+Date.now(), date: ds, bagianId: bId,
-          time:'09:00', agenda:'Rapat '+bagianMap[bId].name,
-          notulen:'', status:'tentative', progress:[]
-        });
-        await saveMeetings();
-        renderCalendar();
-        refreshModalSub(ds);
-        renderModalBody(ds);
+      addBtn.onclick=async()=>{
+        const bId=document.getElementById('addBagianSelect').value;
+        meetings.push({id:ds+'-'+bId+'-'+Date.now(),date:ds,bagianId:bId,time:'09:00',
+          agenda:'Rapat '+bagianMap[bId].name,notulen:'',status:'tentative',
+          progress:[],notulenFileName:'',notulenFileUrl:''});
+        await saveMeetings();renderCalendar();refreshModalSub(ds);renderModalBody(ds);
       };
     }
   }
+  document.getElementById('closeModal').onclick=()=>document.getElementById('overlay').classList.remove('show');
+  document.getElementById('overlay').onclick=e=>{if(e.target.id==='overlay')document.getElementById('overlay').classList.remove('show');};
 
-  document.getElementById('closeModal').onclick = ()=>document.getElementById('overlay').classList.remove('show');
-  document.getElementById('overlay').onclick = e=>{
-    if(e.target.id==='overlay') document.getElementById('overlay').classList.remove('show');
+  /* ================= MENU 2: LINKS ================= */
+  function ensureHttp(u){ return /^https?:\/\//i.test(u) ? u : 'https://'+u; }
+  function renderLinks(){
+    const el=document.getElementById('lkList');
+    if(!portal.links.length){el.innerHTML='<div class="empty-note">Belum ada link. Tambahkan di atas.</div>';return;}
+    el.innerHTML=portal.links.map(x=>`
+      <div class="list-item">
+        <div class="li-main">
+          <div class="li-title"><a href="${escA(x.url)}" target="_blank" rel="noopener">🔗 ${esc(x.judul)}</a></div>
+          <div class="li-sub">${esc(x.url)}</div>
+          ${x.keterangan?`<div class="li-desc">${esc(x.keterangan)}</div>`:''}
+        </div>
+        <div class="li-actions"><button class="btn btn-del" data-id="${escA(x.id)}">Hapus</button></div>
+      </div>`).join('');
+    el.querySelectorAll('.btn-del').forEach(b=>{
+      b.onclick=async()=>{
+        portal.links=portal.links.filter(x=>x.id!==b.getAttribute('data-id'));
+        await savePortal('links');renderLinks();
+      };
+    });
+  }
+  document.getElementById('lkAdd').onclick=async()=>{
+    const j=document.getElementById('lkJudul').value.trim();
+    const u=document.getElementById('lkUrl').value.trim();
+    if(!j||!u){alert('Judul dan URL wajib diisi.');return;}
+    portal.links.unshift({id:'l'+Date.now(),judul:j,url:ensureHttp(u),
+      keterangan:document.getElementById('lkKet').value.trim(),created_at:new Date().toISOString()});
+    document.getElementById('lkJudul').value='';document.getElementById('lkUrl').value='';document.getElementById('lkKet').value='';
+    await savePortal('links');renderLinks();
   };
-  document.getElementById('prevBtn').onclick = ()=>{ activeMonthIdx=(activeMonthIdx-1+MONTH_LIST.length)%MONTH_LIST.length; renderCalendar(); };
-  document.getElementById('nextBtn').onclick = ()=>{ activeMonthIdx=(activeMonthIdx+1)%MONTH_LIST.length; renderCalendar(); };
 
-  /* ================= Init ================= */
+  /* ================= MENU 3: TINDAK LANJUT ================= */
+  function renderTl(){
+    const el=document.getElementById('tlList');
+    const data=portal.tindaklanjut.filter(x=>tlFilterVal==='all'||x.kategori===tlFilterVal);
+    if(!data.length){el.innerHTML='<div class="empty-note">Belum ada tindak lanjut'+(tlFilterVal!=='all'?' untuk filter ini':'')+'.</div>';return;}
+    el.innerHTML=data.map(x=>`
+      <div class="list-item">
+        <div class="li-main">
+          <span class="kat-tag kat-${escA(x.kategori)}">${x.kategori==='fasop'?'Fasop':'Pemeliharaan'}</span>
+          <div class="li-title"><a href="${escA(x.url)}" target="_blank" rel="noopener">🛠️ ${esc(x.judul)}</a></div>
+          <div class="li-sub">${esc(x.url)}</div>
+          ${x.keterangan?`<div class="li-desc">${esc(x.keterangan)}</div>`:''}
+        </div>
+        <div class="li-actions"><button class="btn btn-del" data-id="${escA(x.id)}">Hapus</button></div>
+      </div>`).join('');
+    el.querySelectorAll('.btn-del').forEach(b=>{
+      b.onclick=async()=>{
+        portal.tindaklanjut=portal.tindaklanjut.filter(x=>x.id!==b.getAttribute('data-id'));
+        await savePortal('tindaklanjut');renderTl();
+      };
+    });
+  }
+  document.getElementById('tlAdd').onclick=async()=>{
+    const j=document.getElementById('tlJudul').value.trim();
+    const u=document.getElementById('tlUrl').value.trim();
+    if(!j||!u){alert('Judul dan URL wajib diisi.');return;}
+    portal.tindaklanjut.unshift({id:'t'+Date.now(),kategori:document.getElementById('tlKat').value,
+      judul:j,url:ensureHttp(u),keterangan:document.getElementById('tlKet').value.trim(),created_at:new Date().toISOString()});
+    document.getElementById('tlJudul').value='';document.getElementById('tlUrl').value='';document.getElementById('tlKet').value='';
+    await savePortal('tindaklanjut');renderTl();
+  };
+  document.querySelectorAll('#tlFilter .fchip').forEach(ch=>{
+    ch.onclick=()=>{
+      tlFilterVal=ch.getAttribute('data-f');
+      document.querySelectorAll('#tlFilter .fchip').forEach(c=>c.classList.toggle('on',c===ch));
+      renderTl();
+    };
+  });
+
+  /* ================= MENU 4: AGENDA ================= */
+  function renderAgendaMini(){
+    document.getElementById('agCalTitle').textContent=MONTHS[agMonth]+' '+agYear;
+    const el=document.getElementById('agMini'); el.innerHTML='';
+    const off=dowMonFirst(new Date(agYear,agMonth,1).getDay());
+    const dim=new Date(agYear,agMonth+1,0).getDate();
+    const hasSet=new Set(portal.agenda.map(a=>a.tanggal));
+    for(let i=0;i<off;i++){const f=document.createElement('div');f.className='mini-day other';el.appendChild(f);}
+    for(let d=1;d<=dim;d++){
+      const ds=dateStr(agYear,agMonth,d);
+      const cell=document.createElement('div');
+      cell.className='mini-day'+(hasSet.has(ds)?' has':'')+(agSelDate===ds?' selected':'');
+      cell.textContent=d;
+      cell.onclick=()=>{agSelDate=(agSelDate===ds?null:ds);renderAgenda();};
+      el.appendChild(cell);
+    }
+  }
+  function renderAgendaList(){
+    const el=document.getElementById('agList');
+    let data=[...portal.agenda].sort((a,b)=>(a.tanggal+a.jam).localeCompare(b.tanggal+b.jam));
+    if(agSelDate)data=data.filter(a=>a.tanggal===agSelDate);
+    if(!data.length){el.innerHTML='<div class="empty-note">'+(agSelDate?'Tidak ada agenda pada '+fmtDateHuman(agSelDate):'Belum ada agenda. Tambahkan di atas.')+'</div>';return;}
+    el.innerHTML=data.map(a=>`
+      <div class="list-item">
+        <div class="li-main">
+          <div class="li-title">🗓️ ${esc(a.judul)}</div>
+          <div class="li-sub">${fmtDateHuman(a.tanggal)}${a.jam?' · '+esc(a.jam)+' WIB':''}</div>
+          ${a.keterangan?`<div class="li-desc">${esc(a.keterangan)}</div>`:''}
+        </div>
+        <div class="li-actions"><button class="btn btn-del" data-id="${escA(a.id)}">Hapus</button></div>
+      </div>`).join('');
+    el.querySelectorAll('.btn-del').forEach(b=>{
+      b.onclick=async()=>{
+        portal.agenda=portal.agenda.filter(x=>x.id!==b.getAttribute('data-id'));
+        await savePortal('agenda');renderAgenda();
+      };
+    });
+  }
+  function renderAgenda(){renderAgendaMini();renderAgendaList();}
+  document.getElementById('agPrev').onclick=()=>{agMonth--;if(agMonth<0){agMonth=11;agYear--;}renderAgendaMini();};
+  document.getElementById('agNext').onclick=()=>{agMonth++;if(agMonth>11){agMonth=0;agYear++;}renderAgendaMini();};
+  document.getElementById('agAdd').onclick=async()=>{
+    const t=document.getElementById('agTgl').value;
+    const j=document.getElementById('agJudul').value.trim();
+    if(!t||!j){alert('Tanggal dan Judul agenda wajib diisi.');return;}
+    portal.agenda.push({id:'a'+Date.now(),tanggal:t,jam:document.getElementById('agJam').value,
+      judul:j,keterangan:document.getElementById('agKet').value.trim(),created_at:new Date().toISOString()});
+    document.getElementById('agJudul').value='';document.getElementById('agKet').value='';
+    await savePortal('agenda');renderAgenda();
+  };
+
+  /* ================= ARSIP FILE ================= */
+  function fmtTgl(iso){
+    const d=new Date(iso);
+    return isNaN(d)?'':`${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+  }
+  function renderFiles(){
+    const el=document.getElementById('fileList');
+    if(!portal.files.length){el.innerHTML='<div class="empty-note">Belum ada file yang diunggah.</div>';return;}
+    const data=[...portal.files].reverse();
+    el.innerHTML=data.map(f=>`
+      <div class="list-item">
+        <div class="li-main">
+          <div class="li-title"><a href="${escA(f.url)}" target="_blank" rel="noopener">📄 ${esc(f.nama_file)}</a></div>
+          <div class="li-sub">${f.konteks?esc(f.konteks)+' · ':''}${fmtTgl(f.uploaded_at)}</div>
+        </div>
+      </div>`).join('');
+  }
+  document.getElementById('fileBtn').onclick=()=>document.getElementById('fileInput').click();
+  document.getElementById('fileInput').onchange=async()=>{
+    const f=document.getElementById('fileInput').files[0];
+    if(!f)return;
+    const st=document.getElementById('fileStatus');
+    const d=await uploadFile(f,'arsip',st);
+    if(d)renderFiles();
+    document.getElementById('fileInput').value='';
+  };
+
+  /* ================= INIT ================= */
   async function init(){
-    const db = document.getElementById('dbStatus');
-    db.innerHTML = API_URL
-      ? '🟢 Database: Google Sheets (tersinkron ke semua pengguna)'
-      : '🟠 Database: lokal browser ini saja — isi API_URL untuk sinkronisasi semua pengguna';
-    renderLegend();
-    await loadMeetings();
-    showView('login');
+    const db=document.getElementById('dbStatus');
+    db.innerHTML=API_URL
+      ?'🟢 Database: Google Sheets + Google Drive (tersinkron ke semua pengguna)'
+      :'🟠 Database: lokal browser ini saja — isi API_URL untuk sinkronisasi';
+    await loadAll();
   }
   init();
 })();
